@@ -1,0 +1,5 @@
+#+AUTHOR:     rgb-24bit
+
+* NOTE
+  My spacemacs configuration.
+
