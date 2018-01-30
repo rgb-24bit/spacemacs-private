@@ -47,7 +47,9 @@
      latex
      plantuml
      python
-     my-c-c++
+     (my-c-c++ :variables
+               c-c++-enable-google-style t
+               c-c++-default-mode-for-headers 'c++-mode)
      my-csharp
      )
 
@@ -418,19 +420,24 @@
   ;; ===========================================================================
   ;; ELPA Mirror Settings (Mirror Source for Emacs China)
   ;; ===========================================================================
+
   (setq configuration-layer-elpa-archives
         '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
           ("org-cn"   . "http://elpa.emacs-china.org/org/")
           ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
+
   ;; ===========================================================================
   ;; org-mode gtd state settings
   ;; @ /! Switch to this state will be prompted to enter
   ;; ===========================================================================
+
   (setq org-todo-keywords
         '((sequence "TODO(t!)" "NEXT(n)" "WAITTING(w)" "SOMEDAY(s)" "MAYBE(m)" "|" "DONE(d@/!)" "ABORT(a@/!)")))
+
   ;; ===========================================================================
   ;; chinese and english font config
   ;; ===========================================================================
+
   (set-face-attribute
    'default nil
    :font (font-spec :name "-outline-Source Code Pro-bold-normal-normal-mono-*-*-*-*-c-*-iso10646-1"
@@ -445,6 +452,7 @@
                 :weight 'normal
                 :slant 'normal
                 :size 10.5)))
+
   ;; ===========================================================================
   )
 
@@ -468,7 +476,8 @@
     )
 
   ;; windows system encoding format settings
-  (setq-default w32-system-coding-system 'cp936-dos)
+  (if (eq system-type 'windows-nt)
+      (setq-default w32-system-coding-system 'cp936-dos))
 
   ;; ===========================================================================
   ;;                c-c++ config
