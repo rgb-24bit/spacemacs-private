@@ -500,53 +500,8 @@
   (setq python-shell-completion-native-enable nil)
 
   ;; ===========================================================================
-  ;;                blog config
+  ;;                export config
   ;; ===========================================================================
-  (require 'ox-publish)
-  (setq org-publish-project-alist
-        '(
-          ("blog-article"                ;; 需要转换为HTML的内容
-           :base-directory "e:/blog/org"
-           :base-extension "org"
-           :publishing-directory "e:/blog/article"
-           :recursive t
-           :publishing-function org-html-publish-to-html
-           :headline-levels 4             ;; Just the default for this project.
-           :auto-preamble t
-           :section-numbers nil
-           :author "rgb-24bit"
-           :email "rgb-24bit@foxmail.com"
-           :auto-sitemap t                ;; Generate sitemap.org automagically...
-           :sitemap-filename "blog-index.org"  ;; ... call it sitemap.org (it's the default)...
-           :sitemap-title "rgb-24bit's Blog"         ;; ... with title 'rgb-24bit's '.
-           :sitemap-sort-files anti-chronologically
-           :sitemap-file-entry-format "%d %t"
-           :html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"https://rgb-24bit.github.io/style/css/main.css\"/>"
-           :html-postamble "
-           版权声明:自由转载-非商用-非衍生-保持署名(<a href=\"http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh\">创意共享3.0许可证</a>)
-           <br/>
-           <a class=\"author\" href=\"https://rgb-24bit.github.io\">%a</a> /
-           <span class=\"date\">Last Update:%T</span><span class=\"creator\">%c</span>
-           <div id=\"disqus_thread\"></div>
-           <script type=\"text/javascript\">
-             var disqus_shortname = 'rgb-24bit';
-             (function() {
-               var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-               dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-               (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-             })();
-           </script>"
-           )
-          ("blog-static"                   ;; 不需要转换为HTML的文件
-           :base-directory "e:/blog/org"
-           :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
-           :publishing-directory "e:/blog/article"
-           :recursive t
-           :publishing-function org-publish-attachment
-           )
-          ("blog" :components ("blog-article" "blog-static"))  ;; 同时生成二者
-          ))
-
   ;; Postamble.
   (setq org-html-postamble t
         org-html-postamble-format
@@ -555,7 +510,7 @@
            class=\"date\">Last Update:%T</span><span class=\"creator\">%c</span>")))
 
   ;; 代码高亮设置
-  (setq org-html-htmlize-output-type 'css)
+  ;; (setq org-html-htmlize-output-type 'css)
 
   ;; ===========================================================================
   ;;                org config
