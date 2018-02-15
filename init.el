@@ -546,6 +546,9 @@
       ;; indentation settings
       (setq web-mode-markup-indent-offset 2)
 
+      ;; colorization config
+      (setq web-mode-enable-css-colorization t)
+
       ;; color setting
       (set-face-attribute 'web-mode-doctype-face nil :foreground "#66CCFF")
       (set-face-attribute 'web-mode-html-tag-face nil :foreground "#9999FF")
