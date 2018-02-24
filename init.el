@@ -3,6 +3,8 @@
 ;; It must be stored in your home directory.
 
 (defun dotspacemacs/layers ()
+  "Layer configuration:
+This function should only modify configuration layer settings."
   (setq-default
    ;; Base distribution to use. This is a layer contained in the directory
    ;; `+distribution'. For now available distributions are `spacemacs-base'
@@ -46,7 +48,8 @@
      html
      latex
      plantuml
-     python
+     (python :variables
+             python-backend 'anaconda)
      (my-c-c++ :variables
                c-c++-enable-google-style t
                c-c++-default-mode-for-headers 'c-mode)
@@ -57,6 +60,9 @@
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
+   ;; To use a local version of a package, use the `:location' property:
+   ;; '(your-package :location "~/path/to/your-package/")
+   ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(cnfonts)
 
    ;; A list of packages that cannot be updated.
@@ -75,6 +81,10 @@
    dotspacemacs-install-packages 'used-only))
 
 (defun dotspacemacs/init ()
+  "Initialization:
+This function is called at the very beginning of Spacemacs startup,
+before layer configuration.
+It should only modify the values of Spacemacs settings."
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (setq-default
@@ -98,7 +108,7 @@
 
    ;; If non-nil then Spacelpa repository is the primary source to install
    ;; a locked version of packages. If nil then Spacemacs will install the
-   ;; lastest version of packages from MELPA. (default nil)
+   ;; latest version of packages from MELPA. (default nil)
    dotspacemacs-use-spacelpa nil
 
    ;; If non-nil then verify the signature for downloaded Spacelpa archives.
@@ -570,7 +580,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(org-agenda-files
    (quote
-    ("~/Desktop/gtd/routine.org" "~/Desktop/gtd/project.org" "~/Desktop/gtd/task.org")))
+    ("~/Desktop/gtd/task.org" "~/Desktop/gtd/routine.org" "~/Desktop/gtd/project.org")))
  '(package-selected-packages
    (quote
     (org-mime centered-cursor-mode yasnippet-snippets yapfify yaml-mode ws-butler winum which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tagedit symon string-inflection sql-indent spaceline-all-the-icons solarized-theme smex slim-mode scss-mode sass-mode restart-emacs request realgud rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode powershell popwin plantuml-mode pippel pip-requirements persp-mode pcre2el password-generator paradox overseer org-projectile org-present org-pomodoro org-download org-bullets org-brain open-junk-file neotree nameless mwim move-text mmm-mode markdown-toc macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode json-mode js2-refactor js-doc ivy-purpose ivy-hydra info+ indent-guide importmagic impatient-mode hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-make graphviz-dot-mode google-translate google-c-style golden-ratio gnuplot gh-md fuzzy flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu emmet-mode elisp-slime-nav editorconfig dumb-jump disaster diminish define-word cython-mode csharp-mode counsel-projectile counsel-css company-web company-tern company-statistics company-c-headers company-auctex company-anaconda column-enforce-mode color-theme-sanityinc-solarized coffee-mode cnfonts cmake-mode cmake-ide clean-aindent-mode clang-format auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ac-ispell))))
