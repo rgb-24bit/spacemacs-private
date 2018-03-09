@@ -565,12 +565,16 @@ It should only modify the values of Spacemacs settings."
       (setq web-mode-enable-css-colorization t)
 
       ;; color setting
-      (set-face-attribute 'web-mode-doctype-face nil :foreground "#66CCFF")
-      (set-face-attribute 'web-mode-html-tag-face nil :foreground "#9999FF")
-      (set-face-attribute 'web-mode-html-tag-bracket-face nil :foreground "#66CCFF")
-      (set-face-attribute 'web-mode-html-attr-name-face nil :foreground "#FF6600")
-      (set-face-attribute 'web-mode-css-at-rule-face nil :foreground "#9999FF")
-      (set-face-attribute 'web-mode-variable-name-face nil :foreground "#39C5BB")))
+      ;; refer https://github.com/bbatsov/solarized-emacs/blob/2dd2699b2f315374333292b132dc0dc03719aba2/solarized.el#L135
+      ;; refer https://github.com/bbatsov/solarized-emacs/blob/2dd2699b2f315374333292b132dc0dc03719aba2/solarized.el#L2048
+      (set-face-attribute 'web-mode-doctype-face nil :foreground "#586e75")
+      (set-face-attribute 'web-mode-html-tag-face nil :foreground "#859900")
+      (set-face-attribute 'web-mode-html-tag-bracket-face nil :foreground "#586e75")
+      (set-face-attribute 'web-mode-html-attr-name-face nil :foreground "#268bd2")
+      (set-face-attribute 'web-mode-html-attr-value-face nil :foreground "#2aa198")
+      (set-face-attribute 'web-mode-html-attr-equal-face nil :foreground "#268bd2")
+      (set-face-attribute 'web-mode-html-tag-custom-face nil :foreground "#859900")
+      ))
   )
 
 (defun dotspacemacs/emacs-custom-settings ()
@@ -578,21 +582,21 @@ It should only modify the values of Spacemacs settings."
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(org-agenda-files
-   (quote
-    ("~/Desktop/gtd/project.org" "~/Desktop/gtd/routine.org" "~/Desktop/gtd/task.org")))
- '(package-selected-packages
-   (quote
-    (mvn meghanada flycheck maven-test-mode groovy-mode groovy-imports pcache gradle-mode company-emacs-eclim eclim org-mime centered-cursor-mode yasnippet-snippets yapfify yaml-mode ws-butler winum which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tagedit symon string-inflection sql-indent spaceline-all-the-icons solarized-theme smex slim-mode scss-mode sass-mode restart-emacs request realgud rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode powershell popwin plantuml-mode pippel pip-requirements persp-mode pcre2el password-generator paradox overseer org-projectile org-present org-pomodoro org-download org-bullets org-brain open-junk-file neotree nameless mwim move-text mmm-mode markdown-toc macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode json-mode js2-refactor js-doc ivy-purpose ivy-hydra info+ indent-guide importmagic impatient-mode hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-make graphviz-dot-mode google-translate google-c-style golden-ratio gnuplot gh-md fuzzy flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu emmet-mode elisp-slime-nav editorconfig dumb-jump disaster diminish define-word cython-mode csharp-mode counsel-projectile counsel-css company-web company-tern company-statistics company-c-headers company-auctex company-anaconda column-enforce-mode color-theme-sanityinc-solarized coffee-mode cnfonts cmake-mode cmake-ide clean-aindent-mode clang-format auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ac-ispell))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-)
+  (custom-set-variables
+   ;; custom-set-variables was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(org-agenda-files
+     (quote
+      ("~/Desktop/gtd/project.org" "~/Desktop/gtd/routine.org" "~/Desktop/gtd/task.org")))
+   '(package-selected-packages
+     (quote
+      (mvn meghanada flycheck maven-test-mode groovy-mode groovy-imports pcache gradle-mode company-emacs-eclim eclim org-mime centered-cursor-mode yasnippet-snippets yapfify yaml-mode ws-butler winum which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tagedit symon string-inflection sql-indent spaceline-all-the-icons solarized-theme smex slim-mode scss-mode sass-mode restart-emacs request realgud rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode powershell popwin plantuml-mode pippel pip-requirements persp-mode pcre2el password-generator paradox overseer org-projectile org-present org-pomodoro org-download org-bullets org-brain open-junk-file neotree nameless mwim move-text mmm-mode markdown-toc macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode json-mode js2-refactor js-doc ivy-purpose ivy-hydra info+ indent-guide importmagic impatient-mode hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-make graphviz-dot-mode google-translate google-c-style golden-ratio gnuplot gh-md fuzzy flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu emmet-mode elisp-slime-nav editorconfig dumb-jump disaster diminish define-word cython-mode csharp-mode counsel-projectile counsel-css company-web company-tern company-statistics company-c-headers company-auctex company-anaconda column-enforce-mode color-theme-sanityinc-solarized coffee-mode cnfonts cmake-mode cmake-ide clean-aindent-mode clang-format auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ac-ispell))))
+  (custom-set-faces
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   )
+  )
