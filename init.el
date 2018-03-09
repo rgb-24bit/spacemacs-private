@@ -33,12 +33,12 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(graphviz
-     octave
-     yaml
-     ivy
+   '(ivy
      auto-completion
      better-defaults
+     graphviz
+     octave
+     yaml
      emacs-lisp
      markdown
      org
@@ -66,10 +66,14 @@ This function should only modify configuration layer settings."
    dotspacemacs-additional-packages '(cnfonts)
 
    ;; A list of packages that cannot be updated.
-   dotspacemacs-frozen-packages '(evil-unimpaired)
+   dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(evil-unimpaired)
+   dotspacemacs-excluded-packages
+   '(ycmd company-ycmd clang-format powershell pyenv-mode
+          evil-unimpaired google-translate evil-mc evil-args
+          evil-edit evil-exchange evil-indent-plus
+          )
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -169,8 +173,6 @@ It should only modify the values of Spacemacs settings."
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(sanityinc-solarized-dark
                          sanityinc-solarized-light
-                         solarized-dark
-                         solarized-light
                          spacemacs-dark
                          spacemacs-light)
 
@@ -516,11 +518,11 @@ It should only modify the values of Spacemacs settings."
   ;;                export config
   ;; ===========================================================================
   ;; Postamble.
-  (setq org-html-postamble t
-        org-html-postamble-format
-        '(("en" "<a class=\"author\"
-           href=\"https://rgb-24bit.github.io\">%a</a> / <span
-           class=\"date\">Last Update:%T</span><span class=\"creator\">%c</span>")))
+  ;; (setq org-html-postamble t
+  ;;       org-html-postamble-format
+  ;;       '(("en" "<a class=\"author\"
+  ;;          href=\"https://rgb-24bit.github.io\">%a</a> / <span
+  ;;          class=\"date\">Last Update:%T</span><span class=\"creator\">%c</span>")))
 
   ;; 代码高亮设置
   ;; (setq org-html-htmlize-output-type 'css)
@@ -586,7 +588,7 @@ This function is called at the very end of Spacemacs initialization."
     ("~/Desktop/gtd/project.org" "~/Desktop/gtd/routine.org" "~/Desktop/gtd/task.org")))
  '(package-selected-packages
    (quote
-    (org-mime centered-cursor-mode yasnippet-snippets yapfify yaml-mode ws-butler winum which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tagedit symon string-inflection sql-indent spaceline-all-the-icons solarized-theme smex slim-mode scss-mode sass-mode restart-emacs request realgud rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode powershell popwin plantuml-mode pippel pip-requirements persp-mode pcre2el password-generator paradox overseer org-projectile org-present org-pomodoro org-download org-bullets org-brain open-junk-file neotree nameless mwim move-text mmm-mode markdown-toc macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode json-mode js2-refactor js-doc ivy-purpose ivy-hydra info+ indent-guide importmagic impatient-mode hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-make graphviz-dot-mode google-translate google-c-style golden-ratio gnuplot gh-md fuzzy flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu emmet-mode elisp-slime-nav editorconfig dumb-jump disaster diminish define-word cython-mode csharp-mode counsel-projectile counsel-css company-web company-tern company-statistics company-c-headers company-auctex company-anaconda column-enforce-mode color-theme-sanityinc-solarized coffee-mode cnfonts cmake-mode cmake-ide clean-aindent-mode clang-format auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ac-ispell))))
+    (mvn meghanada flycheck maven-test-mode groovy-mode groovy-imports pcache gradle-mode company-emacs-eclim eclim org-mime centered-cursor-mode yasnippet-snippets yapfify yaml-mode ws-butler winum which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tagedit symon string-inflection sql-indent spaceline-all-the-icons solarized-theme smex slim-mode scss-mode sass-mode restart-emacs request realgud rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode powershell popwin plantuml-mode pippel pip-requirements persp-mode pcre2el password-generator paradox overseer org-projectile org-present org-pomodoro org-download org-bullets org-brain open-junk-file neotree nameless mwim move-text mmm-mode markdown-toc macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode json-mode js2-refactor js-doc ivy-purpose ivy-hydra info+ indent-guide importmagic impatient-mode hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-make graphviz-dot-mode google-translate google-c-style golden-ratio gnuplot gh-md fuzzy flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu emmet-mode elisp-slime-nav editorconfig dumb-jump disaster diminish define-word cython-mode csharp-mode counsel-projectile counsel-css company-web company-tern company-statistics company-c-headers company-auctex company-anaconda column-enforce-mode color-theme-sanityinc-solarized coffee-mode cnfonts cmake-mode cmake-ide clean-aindent-mode clang-format auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
