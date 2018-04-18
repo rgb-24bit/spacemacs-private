@@ -477,19 +477,20 @@ It should only modify the values of Spacemacs settings."
   ;;                spacemacs config
   ;; ===========================================================================
 
+  ;; Use <SPC> T T
   ;; Graphical interface window transparent setting function (key binding `f9')
-  (global-set-key [(f9)] 'loop-alpha)
-  (setq alpha-list '((100 100) (90 90) (80 80) (70 70) (60 60) (50 50)))
-  (defun loop-alpha ()
-    (interactive)
-    (let ((h (car alpha-list)))
-      ((lambda (a ab)
-         (set-frame-parameter (selected-frame) 'alpha (list a ab))
-         (add-to-list 'default-frame-alist (cons 'alpha (list a ab)))
-         ) (car h) (car (cdr h)))
-      (setq alpha-list (cdr (append alpha-list (list h))))
-      )
-    )
+  ;; (global-set-key [(f9)] 'loop-alpha)
+  ;; (setq alpha-list '((100 100) (90 90) (80 80) (70 70) (60 60) (50 50)))
+  ;; (defun loop-alpha ()
+  ;;   (interactive)
+  ;;   (let ((h (car alpha-list)))
+  ;;     ((lambda (a ab)
+  ;;        (set-frame-parameter (selected-frame) 'alpha (list a ab))
+  ;;        (add-to-list 'default-frame-alist (cons 'alpha (list a ab)))
+  ;;        ) (car h) (car (cdr h)))
+  ;;     (setq alpha-list (cdr (append alpha-list (list h))))
+  ;;     )
+  ;;   )
 
   ;; windows system encoding format settings
   (if (eq system-type 'windows-nt)
@@ -563,6 +564,10 @@ It should only modify the values of Spacemacs settings."
 
       ;; colorization config
       (setq web-mode-enable-css-colorization t)
+
+      ;; https://emacs-china.org/t/topic/3607
+      (setq company-backends
+            (remove 'company-css company-backends-web-mode))
 
       ;; color setting
       ;; refer https://github.com/bbatsov/solarized-emacs/blob/2dd2699b2f315374333292b132dc0dc03719aba2/solarized.el#L135
