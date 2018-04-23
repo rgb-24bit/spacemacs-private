@@ -493,8 +493,14 @@ It should only modify the values of Spacemacs settings."
   ;;   )
 
   ;; windows system encoding format settings
-  (if (eq system-type 'windows-nt)
-      (setq-default w32-system-coding-system 'cp936-dos))
+  (when (eq system-type 'windows-nt)
+    (setq-default w32-system-coding-system 'cp936-dos)
+    ;; https://emacs-china.org/t/topic/2900/3
+    (setq gc-cons-threshold (* 512 1024 1024))
+    (setq gc-cons-percentage 0.5)
+    (run-with-idle-timer 5 t #'garbage-collect)
+    ;; (setq garbage-collection-messages t)
+    )
 
   ;; ===========================================================================
   ;;                c-c++ config
