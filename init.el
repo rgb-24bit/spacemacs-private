@@ -43,11 +43,11 @@ This function should only modify configuration layer settings."
      markdown
      org
      windows-scripts
-     javascript
      sql
      html
      latex
      plantuml
+     javascript
      (python :variables
              python-backend 'anaconda)
      (my-c-c++ :variables
