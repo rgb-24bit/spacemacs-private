@@ -42,7 +42,6 @@ This function should only modify configuration layer settings."
      emacs-lisp
      markdown
      org
-     windows-scripts
      sql
      html
      latex
