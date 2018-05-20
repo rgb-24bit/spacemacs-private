@@ -37,7 +37,6 @@ This function should only modify configuration layer settings."
      auto-completion
      better-defaults
      graphviz
-     octave
      yaml
      emacs-lisp
      markdown
