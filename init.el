@@ -565,12 +565,13 @@ in the dump."
   ;; org-mode programming language support settings
   (setq org-babel-load-languages
         '((C . t) (sql . t) (java . t) (latex . t)
-          (sqlite . t) (python . t) (plantuml .t) (emacs-lisp . t)
-          (octave . t) (dot . t)))
+          (sqlite . t) (python . t) (plantuml . t) (emacs-lisp . t)
+          (octave . t) (dot . t) (ditaa . t)))
 
-  ;; plantuml.jar path setting
+  ;; plantuml.jar and ditaa.jar path setting
   (setq org-plantuml-jar-path
         (expand-file-name "~/.spacemacs.d/plantuml.jar"))
+  (setq org-ditaa-jar-path "~/.spacemacs.d/ditaa.jar")
 
   ;; Set the hidden font style mark, the direct effect
   ;; Set to prevent editing of invisible text
