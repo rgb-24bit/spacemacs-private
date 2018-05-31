@@ -574,9 +574,10 @@ in the dump."
   (setq org-ditaa-jar-path "~/.spacemacs.d/ditaa.jar")
 
   ;; Set the hidden font style mark, the direct effect
+  (setq org-hide-emphasis-markers t)
+
   ;; Set to prevent editing of invisible text
-  (setq org-hide-emphasis-markers t
-        org-catch-invisible-edits 'error)
+  (setq org-catch-invisible-edits 'error)
 
   ;; The setting code is highlighted
   (setq org-src-fontify-natively t)
