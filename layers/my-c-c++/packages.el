@@ -24,6 +24,7 @@
     realgud
     ;; semantic
     ;; stickyfunc-enhance
+    smartparens
     google-c-style
     ))
 
@@ -102,6 +103,10 @@
         "r" 'realgud:cmd-restart
         "q" 'realgud:cmd-quit
         "S" 'realgud-window-cmd-undisturb-src))))
+
+(defun my-c-c++/post-init-smartparens ()
+  ;; https://github.com/Fuco1/smartparens/issues/783
+  (setq sp-escape-quotes-after-insert nil))
 
 (defun my-c-c++/init-google-c-style ()
   (use-package google-c-style
