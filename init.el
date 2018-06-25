@@ -41,10 +41,11 @@ This function should only modify configuration layer settings."
      emacs-lisp
      markdown
      org
-     sql
      html
      latex
      plantuml
+     (sql :variables
+          sql-capitalize-keywords t)
      (python :variables
              python-backend 'anaconda)
      (my-c-c++ :variables
@@ -637,7 +638,7 @@ This function is called at the very end of Spacemacs initialization."
     ("~/Desktop/gtd/project.org" "~/Desktop/gtd/routine.org" "~/Desktop/gtd/task.org")))
  '(package-selected-packages
    (quote
-    (groovy-mode gradle-mode ivy-yasnippet yasnippet-snippets yapfify yaml-mode ws-butler winum which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tagedit symon string-inflection sql-indent spaceline-all-the-icons smex slim-mode scss-mode sass-mode restart-emacs request realgud rainbow-delimiters pyvenv pytest py-isort pug-mode popwin plantuml-mode pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file neotree nameless mwim move-text mmm-mode markdown-toc macrostep lorem-ipsum live-py-mode linum-relative link-hint less-css-mode json-navigator json-mode js2-mode js-doc ivy-xref ivy-purpose ivy-hydra indent-guide importmagic impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make graphviz-dot-mode google-c-style golden-ratio gnuplot gh-md fuzzy flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-matchit evil-lisp-state evil-lion evil-iedit-state evil-goggles evil-escape evil-ediff evil-cleverparens evil-anzu eval-sexp-fu emmet-mode elisp-slime-nav editorconfig dumb-jump disaster diminish define-word cython-mode csharp-mode counsel-projectile counsel-css company-web company-statistics company-c-headers company-auctex company-anaconda column-enforce-mode color-theme-sanityinc-solarized cnfonts clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-window ace-link ac-ispell))))
+    (sqlup-mode yasnippet-snippets yapfify yaml-mode ws-butler winum which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tagedit symon string-inflection sql-indent spaceline-all-the-icons smex slim-mode scss-mode sass-mode restart-emacs request realgud rainbow-delimiters pyvenv pytest py-isort pug-mode popwin plantuml-mode pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file neotree nameless mwim move-text mmm-mode markdown-toc macrostep lorem-ipsum live-py-mode link-hint json-navigator json-mode js2-mode js-doc ivy-yasnippet ivy-xref ivy-purpose ivy-hydra indent-guide importmagic impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make groovy-mode graphviz-dot-mode google-c-style golden-ratio gnuplot gh-md fuzzy font-lock+ flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-matchit evil-lisp-state evil-lion evil-iedit-state evil-goggles evil-escape evil-ediff evil-cleverparens evil-anzu eval-sexp-fu emmet-mode elisp-slime-nav editorconfig dumb-jump disaster diminish define-word cython-mode csharp-mode counsel-projectile counsel-css company-web company-statistics company-c-headers company-auctex company-anaconda column-enforce-mode color-theme-sanityinc-solarized cnfonts clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-window ace-link ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
