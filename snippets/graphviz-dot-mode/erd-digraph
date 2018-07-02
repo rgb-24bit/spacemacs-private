@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: erd-digraph
+# key: erd
+# --
+digraph erd {
+  graph[rankdir=LR, overlap=false, splines=true];
+  node [shape=record, fontsize=9, fontname="Verdana"];
+  edge [style=dashed];
+
+  labelloc=t;
+  label="$1";
+
+  $0
+}
