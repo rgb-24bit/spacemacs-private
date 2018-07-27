@@ -493,6 +493,9 @@ in the dump."
   (when (eq system-type 'windows-nt)
     (setq-default w32-system-coding-system 'cp936-dos))
 
+  ;; fix https://github.com/syl20bnr/spacemacs/issues/10938
+  ;; (setq frame-title-format nil)
+
   ;; ===========================================================================
   ;;                c-c++ config
   ;; ===========================================================================
