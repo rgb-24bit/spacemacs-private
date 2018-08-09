@@ -41,7 +41,6 @@ This function should only modify configuration layer settings."
      emacs-lisp
      markdown
      org
-     html
      latex
      plantuml
      (sql :variables
@@ -55,6 +54,7 @@ This function should only modify configuration layer settings."
                     js2-basic-offset 2)
      my-java
      my-csharp
+     my-html
      )
 
    ;; List of additional packages that will be installed without being
@@ -575,31 +575,11 @@ in the dump."
     (org-defkey org-mode-map [(meta return)] 'org-meta-return))
 
   ;; ===========================================================================
-  ;;                web-mode config
+  ;;                css config
   ;; ===========================================================================
-  (with-eval-after-load 'web-mode
-    (progn
-      ;; indentation settings
-      (setq web-mode-markup-indent-offset 2)
 
-      ;; colorization config
-      (setq web-mode-enable-css-colorization t)
-
-      ;; https://emacs-china.org/t/topic/3607
-      (setq company-backends
-            (remove 'company-css company-backends-web-mode))
-
-      ;; color setting
-      ;; refer https://github.com/bbatsov/solarized-emacs/blob/2dd2699b2f315374333292b132dc0dc03719aba2/solarized.el#L135
-      ;; refer https://github.com/bbatsov/solarized-emacs/blob/2dd2699b2f315374333292b132dc0dc03719aba2/solarized.el#L2048
-      (set-face-attribute 'web-mode-doctype-face nil :foreground "#586e75")
-      (set-face-attribute 'web-mode-html-tag-face nil :foreground "#859900")
-      (set-face-attribute 'web-mode-html-tag-bracket-face nil :foreground "#586e75")
-      (set-face-attribute 'web-mode-html-attr-name-face nil :foreground "#268bd2")
-      (set-face-attribute 'web-mode-html-attr-value-face nil :foreground "#2aa198")
-      (set-face-attribute 'web-mode-html-attr-equal-face nil :foreground "#268bd2")
-      (set-face-attribute 'web-mode-html-tag-custom-face nil :foreground "#859900")
-      ))
+  ;; css offset
+  (setq css-indent-offset 2)
   )
 
 (defun dotspacemacs/emacs-custom-settings ()
@@ -623,7 +603,7 @@ This function is called at the very end of Spacemacs initialization."
     ("~/Desktop/gtd/project.org" "~/Desktop/gtd/routine.org" "~/Desktop/gtd/task.org")))
  '(package-selected-packages
    (quote
-    (sql-indent yasnippet-snippets yapfify yaml-mode ws-butler winum which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tagedit symon string-inflection sqlup-mode spaceline-all-the-icons smex slim-mode scss-mode sass-mode restart-emacs request realgud rainbow-delimiters pyvenv pytest py-isort pug-mode popwin plantuml-mode pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file neotree nameless mwim move-text mmm-mode markdown-toc macrostep lorem-ipsum live-py-mode link-hint json-navigator json-mode js2-mode js-doc ivy-yasnippet ivy-xref ivy-purpose ivy-hydra indent-guide importmagic impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make groovy-mode graphviz-dot-mode google-c-style golden-ratio gnuplot gh-md fuzzy font-lock+ flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-matchit evil-lisp-state evil-lion evil-iedit-state evil-goggles evil-escape evil-cleverparens evil-anzu eval-sexp-fu emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode disaster diminish define-word cython-mode csharp-mode counsel-projectile counsel-css company-web company-statistics company-c-headers company-auctex company-anaconda column-enforce-mode color-theme-sanityinc-solarized cnfonts clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-window ace-link ac-ispell))))
+    (css-eldoc yasnippet-snippets yapfify yaml-mode ws-butler winum which-key wgrep web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tagedit symon string-inflection sqlup-mode sql-indent spaceline-all-the-icons smex restart-emacs request realgud rainbow-delimiters pyvenv pytest py-isort popwin plantuml-mode pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file neotree nameless mwim move-text mmm-mode markdown-toc macrostep lorem-ipsum live-py-mode link-hint json-navigator json-mode js2-mode js-doc ivy-yasnippet ivy-xref ivy-purpose ivy-hydra indent-guide importmagic impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make groovy-mode graphviz-dot-mode google-c-style golden-ratio gnuplot gh-md fuzzy font-lock+ flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-matchit evil-lisp-state evil-lion evil-iedit-state evil-goggles evil-escape evil-cleverparens evil-anzu eval-sexp-fu emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode disaster diminish define-word cython-mode csharp-mode counsel-projectile company-statistics company-c-headers company-auctex company-anaconda column-enforce-mode color-theme-sanityinc-solarized cnfonts clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-window ace-link ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
