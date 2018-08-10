@@ -1,4 +1,4 @@
-;; -*- mode: emacs-lisp -*-
+;; -*- mode: emacs-lisp; lexical-binding: t -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
@@ -50,8 +50,7 @@ This function should only modify configuration layer settings."
      (my-c-c++ :variables
                c-c++-enable-google-style t
                c-c++-default-mode-for-headers 'c-mode)
-     (my-javascript :variables
-                    js2-basic-offset 2)
+     my-javascript
      my-java
      my-csharp
      my-html
@@ -534,19 +533,6 @@ in the dump."
   (setq groovy-indent-offset 2)
 
   ;; ===========================================================================
-  ;;                export config
-  ;; ===========================================================================
-  ;; Postamble.
-  ;; (setq org-html-postamble t
-  ;;       org-html-postamble-format
-  ;;       '(("en" "<a class=\"author\"
-  ;;          href=\"https://rgb-24bit.github.io\">%a</a> / <span
-  ;;          class=\"date\">Last Update:%T</span><span class=\"creator\">%c</span>")))
-
-  ;; 代码高亮设置
-  ;; (setq org-html-htmlize-output-type 'css)
-
-  ;; ===========================================================================
   ;;                org config
   ;; ===========================================================================
 
@@ -575,11 +561,14 @@ in the dump."
     (org-defkey org-mode-map [(meta return)] 'org-meta-return))
 
   ;; ===========================================================================
-  ;;                css config
+  ;;                front-end config
   ;; ===========================================================================
 
   ;; css offset
   (setq css-indent-offset 2)
+
+  ;; javascript offset
+  (setq js2-basic-offset 2)
   )
 
 (defun dotspacemacs/emacs-custom-settings ()
@@ -603,7 +592,7 @@ This function is called at the very end of Spacemacs initialization."
     ("~/Desktop/gtd/project.org" "~/Desktop/gtd/routine.org" "~/Desktop/gtd/task.org")))
  '(package-selected-packages
    (quote
-    (css-eldoc yasnippet-snippets yapfify yaml-mode ws-butler winum which-key wgrep web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tagedit symon string-inflection sqlup-mode sql-indent spaceline-all-the-icons smex restart-emacs request realgud rainbow-delimiters pyvenv pytest py-isort popwin plantuml-mode pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file neotree nameless mwim move-text mmm-mode markdown-toc macrostep lorem-ipsum live-py-mode link-hint json-navigator json-mode js2-mode js-doc ivy-yasnippet ivy-xref ivy-purpose ivy-hydra indent-guide importmagic impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make groovy-mode graphviz-dot-mode google-c-style golden-ratio gnuplot gh-md fuzzy font-lock+ flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-matchit evil-lisp-state evil-lion evil-iedit-state evil-goggles evil-escape evil-cleverparens evil-anzu eval-sexp-fu emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode disaster diminish define-word cython-mode csharp-mode counsel-projectile company-statistics company-c-headers company-auctex company-anaconda column-enforce-mode color-theme-sanityinc-solarized cnfonts clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-window ace-link ac-ispell))))
+    (yasnippet-snippets yapfify yaml-mode ws-butler winum wgrep web-beautify volatile-highlights vi-tilde-fringe uuidgen unfill toc-org tagedit symon string-inflection sqlup-mode spaceline-all-the-icons all-the-icons memoize spaceline powerline smex restart-emacs request realgud test-simple loc-changes load-relative rainbow-delimiters pyvenv pytest py-isort popwin plantuml-mode pippel pipenv pip-requirements persp-mode password-generator paradox overseer org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-bullets org-brain open-junk-file neotree nameless mwim move-text mmm-mode markdown-toc markdown-mode macrostep lorem-ipsum live-py-mode link-hint json-navigator hierarchy json-mode json-snatcher json-reformat js2-mode js-doc ivy-yasnippet ivy-xref ivy-purpose window-purpose imenu-list ivy-hydra indent-guide importmagic epc ctable concurrent deferred hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-make helm helm-core groovy-mode google-c-style golden-ratio gnuplot gh-md fuzzy flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-matchit evil-lisp-state evil-lion evil-iedit-state iedit evil-goggles evil-escape evil-cleverparens smartparens paredit evil-anzu anzu eval-sexp-fu highlight elisp-slime-nav editorconfig dumb-jump disaster define-word cython-mode csharp-mode counsel-projectile projectile pkg-info epl counsel swiper ivy company-statistics company-c-headers company-auctex company-anaconda company column-enforce-mode color-theme-sanityinc-solarized cnfonts clean-aindent-mode centered-cursor-mode auto-yasnippet yasnippet auto-highlight-symbol auto-compile packed anaconda-mode pythonic aggressive-indent ace-window ace-link avy ac-ispell auto-complete popup f s dash htmlize which-key use-package pcre2el org-plus-contrib hydra evil goto-chg dotenv-mode diminish bind-map bind-key async undo-tree sql-indent spinner impatient-mode graphviz-dot-mode font-lock+ evil-unimpaired auctex))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
