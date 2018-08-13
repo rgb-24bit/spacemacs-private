@@ -65,7 +65,14 @@
     :init
     (progn
       (spacemacs/set-leader-keys-for-major-mode 'mhtml-mode "i" 'spacemacs/impatient-mode)
-      (spacemacs/set-leader-keys-for-major-mode 'css-mode "i" 'spacemacs/impatient-mode))))
+      (spacemacs/set-leader-keys-for-major-mode 'css-mode "i" 'spacemacs/impatient-mode))
+    :config
+    (progn
+      ;; Alist indicating which filter should be used for which modes.
+      (setq imp-default-user-filters
+            '((html-mode . nil)
+              (mhtml-mode . nil)
+              (web-mode  . nil))))))
 
 (defun my-html/pre-init-web-beautify ()
   (add-to-list 'spacemacs--web-beautify-modes (cons 'css-mode 'web-beautify-css))
