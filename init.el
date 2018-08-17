@@ -568,7 +568,8 @@ in the dump."
   (setq css-indent-offset 2)
 
   ;; javascript offset
-  (setq js2-basic-offset 2)
+  (setq-default js2-basic-offset 2)
+  (setq-default js-indent-level 2)
   )
 
 (defun dotspacemacs/emacs-custom-settings ()
