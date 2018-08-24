@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: head
+# key: head
+# --
+;;; `(buffer-name)` --- $0
