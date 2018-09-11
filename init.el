@@ -70,10 +70,17 @@ This function should only modify configuration layer settings."
 
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages
-   '(ycmd company-ycmd clang-format powershell pyenv-mode
-          google-translate evil-mc evil-args
-          evil-edit evil-exchange evil-indent-plus
-          )
+   '(
+     ;; spacemacs-language, spacemacs-evil
+     google-translate
+     evil-mc evil-args
+     evil-edit
+     evil-exchange
+     evil-indent-plus
+
+     ;; python layer
+     pyenv-mode
+     )
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -602,7 +609,7 @@ This function is called at the very end of Spacemacs initialization."
     ("~/Desktop/gtd/project.org" "~/Desktop/gtd/routine.org" "~/Desktop/gtd/task.org")))
  '(package-selected-packages
    (quote
-    (toc-org plantuml-mode live-py-mode ivy-xref impatient-mode groovy-mode expand-region evil-matchit editorconfig dumb-jump counsel-projectile counsel swiper company-c-headers ace-window helm helm-core ivy avy projectile org-plus-contrib yasnippet-snippets yapfify yaml-mode ws-butler winum which-key wgrep web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill tagedit symon string-inflection sqlup-mode sql-indent spaceline-all-the-icons smex simple-httpd restart-emacs request realgud rainbow-delimiters pyvenv pytest py-isort prettier-js popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file neotree nameless mwim move-text mmm-mode markdown-toc macrostep lorem-ipsum link-hint json-navigator json-mode js2-mode js-doc ivy-yasnippet ivy-purpose ivy-hydra indent-guide importmagic hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make graphviz-dot-mode google-c-style golden-ratio gnuplot gh-md fuzzy font-lock+ flx-ido fill-column-indicator fancy-battery eyebrowse evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-lisp-state evil-lion evil-iedit-state evil-goggles evil-escape evil-cleverparens evil-anzu eval-sexp-fu elisp-slime-nav dotenv-mode disaster diminish define-word cython-mode csharp-mode company-statistics company-auctex company-anaconda column-enforce-mode color-theme-sanityinc-solarized cnfonts clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-link ac-ispell))))
+    (evil-ediff doom-modeline eldoc-eval shrink-path yasnippet-snippets yapfify yaml-mode ws-butler winum which-key wgrep web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tagedit symon string-inflection sqlup-mode sql-indent spaceline-all-the-icons smex restart-emacs request realgud rainbow-delimiters pyvenv pytest py-isort prettier-js popwin plantuml-mode pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file neotree nameless mwim move-text mmm-mode markdown-toc macrostep lorem-ipsum live-py-mode link-hint json-navigator json-mode js2-mode js-doc ivy-yasnippet ivy-xref ivy-purpose ivy-hydra indent-guide importmagic impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make groovy-mode graphviz-dot-mode google-c-style golden-ratio gnuplot gh-md fuzzy font-lock+ flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-matchit evil-lisp-state evil-lion evil-iedit-state evil-goggles evil-escape evil-cleverparens evil-anzu eval-sexp-fu elisp-slime-nav editorconfig dumb-jump dotenv-mode disaster diminish define-word cython-mode csharp-mode counsel-projectile company-statistics company-c-headers company-auctex company-anaconda column-enforce-mode color-theme-sanityinc-solarized cnfonts clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-window ace-link ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
