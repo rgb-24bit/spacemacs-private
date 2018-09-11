@@ -9,7 +9,7 @@ This function should only modify configuration layer settings."
    ;; Base distribution to use. This is a layer contained in the directory
    ;; `+distribution'. For now available distributions are `spacemacs-base'
    ;; or `spacemacs'. (default 'spacemacs)
-   dotspacemacs-distribution 'spacemacs
+   dotspacemacs-distribution 'spacemacs-base
 
    ;; Lazy installation of layers (i.e. layers are installed only when a file
    ;; with a supported type is opened). Possible values are `all', `unused'
@@ -33,14 +33,30 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(ivy
+   '(
+     ;; spacemacs layers
+     spacemacs-completion
+     spacmeacs-editing
+     spacemacs-editing-visual
+     spacemacs-modeline
+     spacemacs-navigation
+     spacemacs-org
+     spacemacs-project
+     spacemacs-visual
+
+     ;; completion layers
      auto-completion
+     ivy
+
+     ;; emacs layers
      better-defaults
+     org
+
+     ;; lang layers
      graphviz
      yaml
      emacs-lisp
      markdown
-     org
      latex
      plantuml
      (sql :variables
