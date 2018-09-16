@@ -46,6 +46,7 @@ This function should only modify configuration layer settings."
 
      ;; completion layers
      auto-completion
+     helm
      ivy
 
      ;; emacs layers
@@ -87,12 +88,8 @@ This function should only modify configuration layer settings."
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages
    '(
-     ;; spacemacs-language, spacemacs-evil
-     google-translate
-     evil-mc evil-args
-     evil-edit
-     evil-exchange
-     evil-indent-plus
+     ;; auto-completion
+     yasnippet-snippets
 
      ;; python layer
      pyenv-mode
