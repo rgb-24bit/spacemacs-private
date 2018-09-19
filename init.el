@@ -53,6 +53,10 @@ This function should only modify configuration layer settings."
      better-defaults
      org
 
+     ;; tools layers
+     lsp
+     command-log
+
      ;; lang layers
      graphviz
      yaml
@@ -62,13 +66,14 @@ This function should only modify configuration layer settings."
      plantuml
      (sql :variables
           sql-capitalize-keywords t)
+     (java :variables
+           java-backend 'lsp)
      (python :variables
              python-backend 'anaconda)
-     (my-c-c++ :variables
+     (c-c++ :variables
                c-c++-enable-google-style t
                c-c++-default-mode-for-headers 'c-mode)
      my-javascript
-     my-java
      my-csharp
      my-html
      )
@@ -91,8 +96,18 @@ This function should only modify configuration layer settings."
      ;; auto-completion
      yasnippet-snippets
 
-     ;; python layer
-     pyenv-mode
+     ;; lsp layer, poor computer performance, Windows, speed of influence
+     lsp-ui
+
+     ;; python layer, windows, not use
+     pyenv-mode lsp-python
+
+     ;; java layer
+     company-emacs-eclim eclim ensime
+
+     ;; c-c++ layer
+     clang-format company-rtags company-ycmd gdb-mi flycheck-rtags
+     helm-rtags ivy-rtags rtags
      )
 
    ;; Defines the behaviour of Spacemacs when installing packages.
@@ -551,6 +566,12 @@ in the dump."
         c-basic-offset 2)
 
   ;; ===========================================================================
+  ;;                java config
+  ;; ===========================================================================
+
+  (setq lsp-java-server-install-dir "E:/tools/java-lsp")
+
+  ;; ===========================================================================
   ;;                python config
   ;; ===========================================================================
 
@@ -620,4 +641,18 @@ in the dump."
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (mvn meghanada maven-test-mode groovy-imports pcache gradle-mode yapfify yaml-mode ws-butler winum which-key wgrep web-beautify volatile-highlights uuidgen use-package unfill toc-org tagedit symon string-inflection sqlup-mode sql-indent spaceline-all-the-icons smex smartparens restart-emacs realgud rainbow-delimiters pyvenv pytest py-isort prettier-js popwin plantuml-mode pippel pipenv pip-requirements pcre2el password-generator paradox overseer org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file nameless mwim move-text mmm-mode markdown-toc macrostep lsp-ui lsp-python lsp-java lorem-ipsum live-py-mode link-hint json-navigator json-mode js2-mode js-doc ivy-yasnippet ivy-xref ivy-hydra indent-guide importmagic impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make groovy-mode graphviz-dot-mode google-c-style golden-ratio gnuplot gh-md fuzzy font-lock+ flx-ido fill-column-indicator fancy-battery expand-region evil-org eval-sexp-fu elisp-slime-nav editorconfig dotenv-mode doom-modeline disaster diminish cython-mode csharp-mode counsel company-statistics company-lsp company-c-headers company-auctex company-anaconda command-log-mode column-enforce-mode color-theme-sanityinc-solarized cnfonts clean-aindent-mode centered-cursor-mode bind-map auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-window ace-link ac-ispell))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
 )
