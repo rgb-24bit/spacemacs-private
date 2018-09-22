@@ -73,6 +73,8 @@ This function should only modify configuration layer settings."
      (c-c++ :variables
                c-c++-enable-google-style t
                c-c++-default-mode-for-headers 'c-mode)
+
+     ;; my layers
      my-javascript
      my-csharp
      my-html
@@ -648,7 +650,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (mvn meghanada maven-test-mode groovy-imports pcache gradle-mode yapfify yaml-mode ws-butler winum which-key wgrep web-beautify volatile-highlights uuidgen use-package unfill toc-org tagedit symon string-inflection sqlup-mode sql-indent spaceline-all-the-icons smex smartparens restart-emacs realgud rainbow-delimiters pyvenv pytest py-isort prettier-js popwin plantuml-mode pippel pipenv pip-requirements pcre2el password-generator paradox overseer org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file nameless mwim move-text mmm-mode markdown-toc macrostep lsp-ui lsp-python lsp-java lorem-ipsum live-py-mode link-hint json-navigator json-mode js2-mode js-doc ivy-yasnippet ivy-xref ivy-hydra indent-guide importmagic impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make groovy-mode graphviz-dot-mode google-c-style golden-ratio gnuplot gh-md fuzzy font-lock+ flx-ido fill-column-indicator fancy-battery expand-region evil-org eval-sexp-fu elisp-slime-nav editorconfig dotenv-mode doom-modeline disaster diminish cython-mode csharp-mode counsel company-statistics company-lsp company-c-headers company-auctex company-anaconda command-log-mode column-enforce-mode color-theme-sanityinc-solarized cnfonts clean-aindent-mode centered-cursor-mode bind-map auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-window ace-link ac-ispell))))
+    (insert-translated-name yapfify yaml-mode ws-butler winum which-key wgrep web-beautify volatile-highlights uuidgen use-package unfill toc-org tagedit symon string-inflection sqlup-mode sql-indent spaceline-all-the-icons smex smartparens restart-emacs rainbow-delimiters pyvenv pytest py-isort prettier-js popwin plantuml-mode pippel pipenv pip-requirements pcre2el password-generator paradox overseer org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file nameless mwim mvn move-text mmm-mode meghanada maven-test-mode markdown-toc macrostep lsp-java lorem-ipsum live-py-mode link-hint json-navigator json-mode js2-mode js-doc ivy-yasnippet ivy-xref ivy-hydra indent-guide importmagic impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make groovy-mode groovy-imports graphviz-dot-mode gradle-mode google-c-style golden-ratio gnuplot gh-md fuzzy font-lock+ flx-ido fill-column-indicator fancy-battery expand-region evil-org eval-sexp-fu elisp-slime-nav editorconfig dotenv-mode doom-modeline disaster diminish cython-mode csharp-mode counsel company-statistics company-lsp company-c-headers company-auctex company-anaconda command-log-mode column-enforce-mode color-theme-sanityinc-solarized cnfonts clean-aindent-mode centered-cursor-mode bind-map auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-window ace-link ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
