@@ -16,7 +16,7 @@
     )
   )
 
-(defun my-web/init-mhtml-mode()
+(defun my-web/init-mhtml-mode ()
   (use-package mhtml-mode
     :defer t
     :mode

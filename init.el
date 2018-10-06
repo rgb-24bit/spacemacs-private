@@ -76,6 +76,7 @@ This function should only modify configuration layer settings."
      my-csharp
      my-java
      my-web
+     my-utils
      )
 
    ;; List of additional packages that will be installed without being
