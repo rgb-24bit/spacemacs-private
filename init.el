@@ -527,6 +527,12 @@ in the dump."
   ;; no minor-modes
   (spacemacs/toggle-mode-line-minor-modes-off)
 
+  ;; Display datetime in mode line
+  ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Time-Parsing.html
+  (spaceline-define-segment datetime
+    (format-time-string "%m-%d %k:%M"))
+  (spaceline-spacemacs-theme 'datetime)
+
   ;; ===========================================================================
   ;;                coding config
   ;; ===========================================================================
