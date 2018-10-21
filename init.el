@@ -86,7 +86,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(cnfonts)
+   dotspacemacs-additional-packages '(cnfonts edit-indirect)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
