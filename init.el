@@ -566,6 +566,9 @@ in the dump."
   (setq c-default-style "linux"
         c-basic-offset 2)
 
+  ;; comments style setting
+  (add-hook 'c-mode-hook (lambda () (c-toggle-comment-style)))
+
   ;; ===========================================================================
   ;;                java config
   ;; ===========================================================================
@@ -578,7 +581,8 @@ in the dump."
 
   ;; python indentation style settings
   (setq python-indent-offset 4
-        python-indent-guess-indent-offset nil)
+        python-indent-guess-indent-offset nil
+        python-indent-guess-indent-offset-verbose nil)
 
   ;; fix elpy bug
   (setq python-shell-completion-native-enable nil)

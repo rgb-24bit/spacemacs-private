@@ -106,7 +106,10 @@
 (defun my-web/init-js-doc ()
   (use-package js-doc
     :defer t
-    :init (spacemacs/js-doc-set-key-bindings 'js2-mode)))
+    :init (spacemacs/js-doc-set-key-bindings 'js2-mode)
+    :config
+    (setq js-doc-mail-address "rgb-24bit@foxmail.com"
+          js-doc-author (format "rgb-24bit <%s>" js-doc-mail-address))))
 
 (defun my-web/pre-init-yasnippet ()
   (spacemacs|use-package-add-hook yasnippet
