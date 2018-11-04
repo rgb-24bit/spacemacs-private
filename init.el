@@ -66,13 +66,14 @@ This function should only modify configuration layer settings."
      plantuml
      (sql :variables
           sql-capitalize-keywords t)
-     (python :variables
-             python-backend 'anaconda)
+     ;; (python :variables
+     ;;         python-backend 'anaconda)
      (c-c++ :variables
                c-c++-enable-google-style t
                c-c++-default-mode-for-headers 'c-mode)
 
      ;; my layers
+     my-python
      my-csharp
      my-java
      my-web
@@ -96,9 +97,6 @@ This function should only modify configuration layer settings."
    '(
      ;; auto-completion
      yasnippet-snippets
-
-     ;; python layer, windows, not use
-     pyenv-mode lsp-python
 
      ;; c-c++ layer
      clang-format company-rtags company-ycmd gdb-mi flycheck-rtags
@@ -570,12 +568,6 @@ in the dump."
   (add-hook 'c-mode-hook (lambda () (c-toggle-comment-style)))
 
   ;; ===========================================================================
-  ;;                java config
-  ;; ===========================================================================
-
-  (setq lsp-java-server-install-dir "E:/tools/java-lsp")
-
-  ;; ===========================================================================
   ;;                python config
   ;; ===========================================================================
 
@@ -653,7 +645,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (yapfify toc-org sql-indent smartparens pyvenv pytest org-mime org-download lsp-ui flycheck ivy-yasnippet impatient-mode htmlize hl-todo highlight-numbers editorconfig doom-modeline csharp-mode counsel swiper company-lsp lsp-mode cnfonts aggressive-indent ace-window anaconda-mode pythonic yasnippet company highlight helm helm-core ivy avy markdown-mode alert projectile dash evil org-plus-contrib hydra yaml-mode ws-butler winum which-key wgrep web-beautify volatile-highlights uuidgen use-package unfill undo-tree tagedit symon string-inflection sqlup-mode spaceline-all-the-icons smex simple-httpd shrink-path restclient restart-emacs rainbow-delimiters py-isort popwin plantuml-mode pippel pipenv pip-requirements pcre2el password-generator parent-mode paradox overseer org-projectile org-present org-pomodoro org-bullets org-brain open-junk-file nameless mwim move-text mmm-mode markdown-toc macrostep lorem-ipsum log4e live-py-mode link-hint js2-mode js-doc ivy-xref ivy-hydra indent-guide importmagic hungry-delete highlight-parentheses highlight-indentation helm-make groovy-mode groovy-imports graphviz-dot-mode goto-chg google-c-style golden-ratio gnuplot gntp gh-md fuzzy font-lock+ flx-ido fill-column-indicator fancy-battery expand-region evil-org eval-sexp-fu emmet-mode elisp-slime-nav eldoc-eval dotenv-mode disaster diminish dash-functional cython-mode company-statistics company-c-headers company-auctex company-anaconda command-log-mode column-enforce-mode color-theme-sanityinc-solarized clean-aindent-mode centered-cursor-mode bind-map auto-yasnippet auto-highlight-symbol auto-compile async ace-link ac-ispell))))
+    (jedi jedi-core python-environment elpy find-file-in-project yapfify yaml-mode ws-butler winum which-key wgrep web-beautify volatile-highlights uuidgen use-package unfill toc-org tagedit symon string-inflection sqlup-mode sql-indent spaceline-all-the-icons smex smartparens restclient restart-emacs rainbow-delimiters pyvenv pytest py-isort popwin plantuml-mode pippel pipenv pip-requirements pcre2el password-generator paradox overseer org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file nameless mwim move-text mmm-mode markdown-toc macrostep lsp-ui lorem-ipsum live-py-mode link-hint js2-mode js-doc ivy-yasnippet ivy-xref ivy-hydra indent-guide importmagic impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make groovy-mode groovy-imports graphviz-dot-mode google-c-style golden-ratio gnuplot gh-md fuzzy font-lock+ flx-ido fill-column-indicator fancy-battery expand-region evil-org eval-sexp-fu emmet-mode elisp-slime-nav editorconfig edit-indirect dotenv-mode doom-modeline disaster diminish cython-mode csharp-mode counsel company-statistics company-lsp company-c-headers company-auctex company-anaconda command-log-mode column-enforce-mode color-theme-sanityinc-solarized cnfonts clean-aindent-mode centered-cursor-mode bind-map auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-window ace-link ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
