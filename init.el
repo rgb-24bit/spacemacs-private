@@ -100,7 +100,7 @@ This function should only modify configuration layer settings."
 
      ;; c-c++ layer
      clang-format company-rtags company-ycmd gdb-mi flycheck-rtags
-     helm-rtags ivy-rtags rtags
+     helm-rtags ivy-rtags rtags cquery ccls
      )
 
    ;; Defines the behaviour of Spacemacs when installing packages.
@@ -647,7 +647,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (jedi jedi-core python-environment elpy find-file-in-project yapfify yaml-mode ws-butler winum which-key wgrep web-beautify volatile-highlights uuidgen use-package unfill toc-org tagedit symon string-inflection sqlup-mode sql-indent spaceline-all-the-icons smex smartparens restclient restart-emacs rainbow-delimiters pyvenv pytest py-isort popwin plantuml-mode pippel pipenv pip-requirements pcre2el password-generator paradox overseer org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file nameless mwim move-text mmm-mode markdown-toc macrostep lsp-ui lorem-ipsum live-py-mode link-hint js2-mode js-doc ivy-yasnippet ivy-xref ivy-hydra indent-guide importmagic impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make groovy-mode groovy-imports graphviz-dot-mode google-c-style golden-ratio gnuplot gh-md fuzzy font-lock+ flx-ido fill-column-indicator fancy-battery expand-region evil-org eval-sexp-fu emmet-mode elisp-slime-nav editorconfig edit-indirect dotenv-mode doom-modeline disaster diminish cython-mode csharp-mode counsel company-statistics company-lsp company-c-headers company-auctex company-anaconda command-log-mode column-enforce-mode color-theme-sanityinc-solarized cnfonts clean-aindent-mode centered-cursor-mode bind-map auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-window ace-link ac-ispell))))
+    (cquery ccls yaml-mode ws-butler winum which-key wgrep web-beautify volatile-highlights uuidgen use-package unfill toc-org tagedit symon string-inflection sqlup-mode sql-indent spaceline-all-the-icons smex smartparens restclient restart-emacs rainbow-delimiters popwin plantuml-mode pcre2el password-generator paradox overseer org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file nameless mwim move-text mmm-mode markdown-toc macrostep lsp-ui lorem-ipsum link-hint js2-mode js-doc jedi ivy-yasnippet ivy-xref ivy-hydra indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers helm-make groovy-mode groovy-imports graphviz-dot-mode google-c-style golden-ratio gnuplot gh-md fuzzy font-lock+ flx-ido fill-column-indicator fancy-battery expand-region evil-org eval-sexp-fu emmet-mode elpy elisp-slime-nav editorconfig edit-indirect dotenv-mode doom-modeline disaster diminish csharp-mode counsel company-statistics company-lsp company-c-headers company-auctex command-log-mode column-enforce-mode color-theme-sanityinc-solarized cnfonts clean-aindent-mode centered-cursor-mode bind-map auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-window ace-link ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
