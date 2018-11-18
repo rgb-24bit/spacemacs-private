@@ -529,9 +529,9 @@ dump."
   (spaceline-spacemacs-theme 'datetime)
 
   ;; Quickly switch to a temporary directory
-  (defun switch-to-temp-directory ()
-    (interactive) (find-file "~/Desktop/temp"))
-  (global-set-key (kbd "C-c t") 'switch-to-temp-directory)
+  ;; (defun switch-to-temp-directory ()
+  ;;   (interactive) (find-file "~/Desktop/temp"))
+  ;; (global-set-key (kbd "C-c t") 'switch-to-temp-directory)
 
   ;; ===========================================================================
   ;;                coding config
