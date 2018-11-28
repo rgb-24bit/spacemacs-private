@@ -29,7 +29,7 @@
     (add-hook  'elpy-mode-hook
                '(lambda ()
                   (setq company-minimum-prefix-length 2)
-                  (setq company-idle-delay 0.5)))
+                  (setq company-idle-delay 0.2)))
 
     ;; python-mode key bindings
     (spacemacs/declare-prefix-for-mode 'python-mode "mg" "goto")
