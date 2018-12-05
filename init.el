@@ -66,14 +66,14 @@ This function should only modify configuration layer settings."
      plantuml
      (sql :variables
           sql-capitalize-keywords t)
-     ;; (python :variables
-     ;;         python-backend 'anaconda)
+     (python :variables
+             python-backend 'anaconda)
      (c-c++ :variables
                c-c++-enable-google-style t
                c-c++-default-mode-for-headers 'c-mode)
 
      ;; my layers
-     my-python
+     ;; my-python
      my-csharp
      my-java
      my-web
@@ -97,6 +97,9 @@ This function should only modify configuration layer settings."
    '(
      ;; auto-completion
      yasnippet-snippets
+
+     ;; python layer, windows, not use
+     pyenv-mode lsp-python
 
      ;; c-c++ layer
      clang-format company-rtags company-ycmd gdb-mi flycheck-rtags
@@ -528,10 +531,11 @@ dump."
     (format-time-string "%m-%d %k:%M"))
   (spaceline-spacemacs-theme 'datetime)
 
-  ;; Quickly switch to a temporary directory
-  ;; (defun switch-to-temp-directory ()
-  ;;   (interactive) (find-file "~/Desktop/temp"))
-  ;; (global-set-key (kbd "C-c t") 'switch-to-temp-directory)
+  (defun rgbit-switch-to-temp-file (name)
+    "Quickly switch to a temporary file."
+    (interactive
+     (list (read-string "Temporary file name: ")))
+    (find-file (concat "~/Desktop/" name)))
 
   ;; ===========================================================================
   ;;                coding config
@@ -647,7 +651,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (cquery ccls yaml-mode ws-butler winum which-key wgrep web-beautify volatile-highlights uuidgen use-package unfill toc-org tagedit symon string-inflection sqlup-mode sql-indent spaceline-all-the-icons smex smartparens restclient restart-emacs rainbow-delimiters popwin plantuml-mode pcre2el password-generator paradox overseer org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file nameless mwim move-text mmm-mode markdown-toc macrostep lsp-ui lorem-ipsum link-hint js2-mode js-doc jedi ivy-yasnippet ivy-xref ivy-hydra indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers helm-make groovy-mode groovy-imports graphviz-dot-mode google-c-style golden-ratio gnuplot gh-md fuzzy font-lock+ flx-ido fill-column-indicator fancy-battery expand-region evil-org eval-sexp-fu emmet-mode elpy elisp-slime-nav editorconfig edit-indirect dotenv-mode doom-modeline disaster diminish csharp-mode counsel company-statistics company-lsp company-c-headers company-auctex command-log-mode column-enforce-mode color-theme-sanityinc-solarized cnfonts clean-aindent-mode centered-cursor-mode bind-map auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-window ace-link ac-ispell))))
+    (yapfify pytest py-isort pippel pipenv pip-requirements live-py-mode importmagic cython-mode company-anaconda anaconda-mode pythonic yaml-mode ws-butler winum which-key wgrep web-beautify volatile-highlights uuidgen use-package unfill toc-org tagedit symon string-inflection sqlup-mode sql-indent spaceline-all-the-icons smex smartparens restclient restart-emacs rainbow-delimiters popwin plantuml-mode pcre2el password-generator paradox overseer org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file nameless mwim move-text mmm-mode markdown-toc macrostep lsp-ui lorem-ipsum link-hint js2-mode js-doc jedi ivy-yasnippet ivy-xref ivy-hydra indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers helm-make groovy-mode groovy-imports graphviz-dot-mode google-c-style golden-ratio gnuplot gh-md fuzzy font-lock+ flx-ido fill-column-indicator fancy-battery expand-region evil-org eval-sexp-fu emmet-mode elpy elisp-slime-nav editorconfig edit-indirect dotenv-mode doom-modeline disaster diminish csharp-mode counsel company-statistics company-lsp company-c-headers company-auctex command-log-mode column-enforce-mode color-theme-sanityinc-solarized cnfonts clean-aindent-mode centered-cursor-mode bind-map auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-window ace-link ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
