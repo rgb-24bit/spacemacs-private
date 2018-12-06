@@ -496,14 +496,16 @@ See the header of this file for more information."
                     :weight 'normal
                     :slant 'normal
                     :size 9.0))
-  (dolist (charset '(kana han symbol cjk-misc bopomofo))
-    (set-fontset-font
-     (frame-parameter nil 'font)
-     charset
-     (font-spec :name "-outline-微软雅黑-normal-normal-normal-sans-*-*-*-*-p-*-iso10646-1"
-                :weight 'normal
-                :slant 'normal
-                :size 10.5)))
+
+  (if window-system
+      (dolist (charset '(kana han symbol cjk-misc bopomofo))
+        (set-fontset-font
+         (frame-parameter nil 'font)
+         charset
+         (font-spec :name "-outline-微软雅黑-normal-normal-normal-sans-*-*-*-*-p-*-iso10646-1"
+                    :weight 'normal
+                    :slant 'normal
+                    :size 10.5))))
   )
 
 (defun dotspacemacs/user-load ()
