@@ -479,14 +479,6 @@ See the header of this file for more information."
           ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
 
   ;; ===========================================================================
-  ;; org-mode gtd state settings
-  ;; @ /! Switch to this state will be prompted to enter
-  ;; ===========================================================================
-
-  (setq org-todo-keywords
-        '((sequence "TODO(t!)" "NEXT(n)" "WAITTING(w)" "SOMEDAY(s)" "MAYBE(m)" "|" "DONE(d@/!)" "ABORT(a@/!)")))
-
-  ;; ===========================================================================
   ;; chinese and english font config
   ;; ===========================================================================
 
@@ -532,12 +524,6 @@ dump."
   (spaceline-define-segment datetime
     (format-time-string "%m-%d %k:%M"))
   (spaceline-spacemacs-theme 'datetime)
-
-  (defun rgbit-switch-to-temp-file (name)
-    "Quickly switch to a temporary file."
-    (interactive
-     (list (read-string "Temporary file name: ")))
-    (find-file (concat "~/Desktop/" name)))
 
   ;; ===========================================================================
   ;;                coding config
@@ -600,9 +586,17 @@ dump."
 
   ;; org-mode programming language support settings
   (setq org-babel-load-languages
-        '((C . t) (sql . t) (java . t) (latex . t)
-          (sqlite . t) (python . t) (plantuml . t) (emacs-lisp . t)
-          (octave . t) (dot . t) (ditaa . t)))
+        '((C          . t)
+          (sql        . t)
+          (java       . t)
+          (latex      . t)
+          (sqlite     . t)
+          (python     . t)
+          (plantuml   . t)
+          (emacs-lisp . t)
+          (octave     . t)
+          (dot        . t)
+          (ditaa      . t)))
 
   ;; plantuml.jar and ditaa.jar path setting
   (setq org-plantuml-jar-path
@@ -618,9 +612,19 @@ dump."
   ;; The setting code is highlighted
   (setq org-src-fontify-natively t)
 
-  ;; M-RET keybinding set
+  ;; Some config
   (with-eval-after-load 'org
-    (org-defkey org-mode-map [(meta return)] 'org-meta-return))
+    (progn
+      ;; ===========================================================================
+      ;; org-mode gtd state settings
+      ;; @ /! Switch to this state will be prompted to enter
+      ;; ===========================================================================
+
+      (setq org-todo-keywords
+            '((sequence "TODO(t!)" "NEXT(n)" "WAITTING(w)" "SOMEDAY(s)" "MAYBE(m)" "|" "DONE(d@/!)" "ABORT(a@/!)")))
+
+      ;; M-RET keybinding set
+      (org-defkey org-mode-map [(meta return)] 'org-meta-return)))
 
   ;; ===========================================================================
   ;;                front-end config
