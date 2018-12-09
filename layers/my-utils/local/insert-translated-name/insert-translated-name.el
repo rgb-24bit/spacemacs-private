@@ -6,8 +6,8 @@
 ;; Maintainer: Andy Stewart <lazycat.manatee@gmail.com>
 ;; Copyright (C) 2018, Andy Stewart, all rights reserved.
 ;; Created: 2018-09-22 10:54:16
-;; Version: 1.3
-;; Last-Updated: 2018-11-12 09:40:33
+;; Version: 2.0
+;; Last-Updated: 2018-12-09 20:45:21
 ;;           By: Andy Stewart
 ;; URL: http://www.emacswiki.org/emacs/download/insert-translated-name.el
 ;; Keywords:
@@ -15,7 +15,7 @@
 ;;
 ;; Features that might be required by this library:
 ;;
-;;
+;; `json' `subr-x'
 ;;
 
 ;;; This file is NOT part of GNU Emacs
@@ -66,8 +66,26 @@
 
 ;;; Change log:
 ;;
+;; 2018/12/09
+;;      * Fix bug of `insert-translated-name-in-string-p' when cursor at left side of string.
+;;
+;; 2018/12/07
+;;      * Add `json' and `subr-x' depend.
+;;
+;; 2018/12/02
+;;      * Use `get-text-property' improve algorithm of `insert-translated-name-in-string-p' and `insert-translated-name-in-commit-p'
+;;
+;; 2018/12/01
+;;      * Add `insert-translated-name-origin-style-mode-list'.
+;;
+;; 2018/11/18
+;;      * Refacotry to remove duplicate variable.
+;;
 ;; 2018/11/12
-;;	* Remove the function of continuous translation, it is not easy to use.
+;;      * Remove Mac color, use hex color instead.
+;;
+;; 2018/11/12
+;;      * Remove the function of continuous translation, it is not easy to use.
 ;;
 ;; 2018/09/26
 ;;      * Add `insert-translated-name-use-original-translation'.
@@ -104,6 +122,8 @@
 ;;
 
 ;;; Require
+(require 'json)
+(require 'subr-x)
 
 ;;; Code:
 
@@ -113,9 +133,12 @@
   :group 'insert-translated-name)
 
 (defface insert-translated-name-font-lock-mark-word
-  '((t (:foreground "White" :background "SystemBlueColor" :bold t)))
+  '((t (:foreground "White" :background "#007aff" :bold t)))
   "Face for keyword match."
   :group 'insert-translated-name)
+
+(defvar insert-translated-name-origin-style-mode-list
+  '(text-mode))
 
 (defvar insert-translated-name-line-style-mode-list
   '(web-mode emacs-lisp-mode))
@@ -142,14 +165,17 @@
        (minibuffer-window-active-p (get-buffer-window)))
       (insert-translated-name-insert-original-translation)
     (insert-translated-name-active
-     (cond ((insert-translated-name-match-modes insert-translated-name-line-style-mode-list)
-            "line")
-           ((insert-translated-name-match-modes insert-translated-name-camel-style-mode-list)
-            "camel")
-           ((insert-translated-name-match-modes insert-translated-name-underline-style-mode-list)
-            "underline")
-           (t
-            "underline")))))
+     (cond
+      ((insert-translated-name-match-modes insert-translated-name-origin-style-mode-list)
+       "origin")
+      ((insert-translated-name-match-modes insert-translated-name-line-style-mode-list)
+       "line")
+      ((insert-translated-name-match-modes insert-translated-name-camel-style-mode-list)
+       "camel")
+      ((insert-translated-name-match-modes insert-translated-name-underline-style-mode-list)
+       "underline")
+      (t
+       "underline")))))
 
 (defun insert-translated-name-insert-original-translation ()
   (interactive)
@@ -259,23 +285,23 @@
 (defun insert-translated-name-monitor-after-change (start end len)
   (when (and (boundp 'insert-translated-name-active-point))
     (if insert-translated-name-active-point
-        (cond
-         ;; Translate current Chinese words after press SPACE.
-         ((string-equal (buffer-substring-no-properties start end) " ")
-          (let ((word (buffer-substring-no-properties insert-translated-name-active-point (- (point) 1))))
-            ;; Delete Chinese words.
-            (kill-region insert-translated-name-active-point (point))
+        (let ((translate-start insert-translated-name-active-point)
+              (translate-end (point)))
+          (cond
+           ;; Translate current Chinese words after press SPACE.
+           ((string-equal (buffer-substring-no-properties start end) " ")
+            (let ((word (buffer-substring-no-properties translate-start translate-end)))
+              ;; Delete Chinese words.
+              (kill-region translate-start translate-end)
 
-            ;; Query translation.
-            (insert-translated-name-query-translation word insert-translated-name-active-style)
+              ;; Query translation.
+              (insert-translated-name-query-translation word insert-translated-name-active-style)
 
-            ;; Inactive.
-            (insert-translated-name-inactive nil)
-            ))
-         ;; Update active overlay bound if user press any other non-SPACE character.
-         (t
-          (move-overlay insert-translated-name-active-overlay insert-translated-name-active-point (point))))
-      )))
+              ;; Inactive.
+              (insert-translated-name-inactive nil)))
+           ;; Update active overlay bound if user press any other non-SPACE character.
+           (t
+            (move-overlay insert-translated-name-active-overlay translate-start translate-end)))))))
 
 (defun insert-translated-name-current-parse-state ()
   "Return parse state of point from beginning of defun."
@@ -290,20 +316,18 @@
          (search-forward-regexp "#\\s-Please\\s-enter\\s-the\\s-commit\\s-message\\s-for\\s-your\\s-changes." nil t))))
 
 (defun insert-translated-name-in-string-p (&optional state)
-  "True if the parse state is within a double-quote-delimited string.
-If no parse state is supplied, compute one from the beginning of the
-  defun to the point."
-  (and (nth 3 (or state (insert-translated-name-current-parse-state)))
-       t))
+  (or (nth 3 (or state (insert-translated-name-current-parse-state)))
+      (and
+       (eq (get-text-property (point) 'face) 'font-lock-string-face)
+       (eq (get-text-property (- (point) 1) 'face) 'font-lock-string-face))
+      (and
+       (eq (get-text-property (point) 'face) 'font-lock-doc-face)
+       (eq (get-text-property (- (point) 1) 'face) 'font-lock-doc-face))
+      ))
 
 (defun insert-translated-name-in-comment-p (&optional state)
-  "True if parse state STATE is within a comment.
-If no parse state is supplied, compute one from the beginning of the
-  defun to the point."
-  ;; 4. nil if outside a comment, t if inside a non-nestable comment,
-  ;;    else an integer (the current comment nesting)
-  (and (nth 4 (or state (insert-translated-name-current-parse-state)))
-       t))
+  (or (nth 4 (or state (insert-translated-name-current-parse-state)))
+      (eq (get-text-property (point) 'face) 'font-lock-comment-face)))
 
 (defun insert-translated-name-convert-translation (translation style)
   (let ((words (split-string translation " ")))
@@ -313,7 +337,9 @@ If no parse state is supplied, compute one from the beginning of the
            (string-join (mapcar 'downcase words) "_"))
           ((string-equal style "camel")
            (concat (downcase (car words)) (string-join (mapcar 'capitalize (cdr words)))))
-          ((string-equal style "comment")
+          ((or
+            (string-equal style "comment")
+            (string-equal style "origin"))
            translation))))
 
 (defun insert-translated-name-update-translation-in-buffer (word style translation insert-buffer placeholder)
