@@ -3,7 +3,9 @@
 (defconst my-utils-packages
   '((insert-translated-name :location local)
     (flex :location local)
-    (bison :location local)))
+    (bison :location local)
+    (restclient :location local))
+  )
 
 (defun my-utils/init-insert-translated-name ()
   (use-package insert-translated-name
@@ -21,5 +23,11 @@
     :defer t
     :mode ("\\.y$" . bison-mode)
     :init (autoload 'bison-mode "bison")))
+
+(defun my-utils/init-restclient ()
+  (use-package restclient
+    :defer t
+    :mode ("\\.http\\'" . restclient-mode)))
+
 
 ;;; packages.el ends here
