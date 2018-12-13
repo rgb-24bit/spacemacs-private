@@ -630,6 +630,16 @@ dump."
       (setq org-todo-keywords
             '((sequence "TODO(t!)" "NEXT(n)" "WAITTING(w)" "SOMEDAY(s)" "MAYBE(m)" "|" "DONE(d@/!)" "ABORT(a@/!)")))
 
+      ;; (let ((red "#dc322f") (green "#859900") (blue "#268bd2") (violet "#6c71c4"))
+      ;;   (setq org-todo-keyword-faces
+      ;;         `(("TODO"     . ,red)
+      ;;           ("NEXT"     . ,red)
+      ;;           ("WAITTING" . ,violet)
+      ;;           ("SOMEDAY"  . ,blue)
+      ;;           ("MAYBE"    . ,blue)
+      ;;           ("DONE"     . ,green)
+      ;;           ("ABORT"    . ,green))))
+
       ;; M-RET keybinding set
       (org-defkey org-mode-map [(meta return)] 'org-meta-return)))
 
