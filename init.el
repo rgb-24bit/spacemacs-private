@@ -643,6 +643,27 @@ dump."
       ;; M-RET keybinding set
       (org-defkey org-mode-map [(meta return)] 'org-meta-return)))
 
+  ;; Org-capture template settings
+  (setq org-task-file "~/Desktop/org/task.org")
+  (setq org-idea-file "~/Desktop/org/idea.org")
+
+  (setq org-capture-templates
+        '(("t" "Task" entry (file+headline org-task-file "Task")
+           "* TODO [#B] %^{HEADLINE}\n  Des: %?"
+           :empty-lines 1)
+          ("r" "Record" entry (file+headline org-task-file "Recd")
+           "* DONE %^{HEADLINE}\n  Des: %?"
+           :empty-lines 1)
+          ("i" "Idea" entry (file org-idea-file)
+           "* %^{HEADLINE} - %u\n  %?"
+           :empty-lines 1)))
+
+  (defun rgb-24bit/insert-clock-entry ()
+    "Insert a clock entity."
+    (interactive)
+    (org-clock-in)
+    (org-clock-out))
+
   ;; ===========================================================================
   ;;                front-end config
   ;; ===========================================================================
