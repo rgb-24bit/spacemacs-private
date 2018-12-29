@@ -532,6 +532,21 @@ dump."
   (setq user-full-name "rgb-24bit")
   (setq user-mail-address "rgb-24bit@foxmail.com")
 
+  (defun rgb-24bit/insert-around-word-or-region (text)
+    "The inserted content surrounds the word or region."
+    (interactive "sInsert: ")
+    (let (start end bds)
+      (if (and transient-mark-mode mark-active)
+          (progn
+            (setq start (region-beginning))
+            (setq end (region-end)))
+        (progn
+          (setq bds (bounds-of-thing-at-point 'symbol))
+          (setq start (cdr bds))
+          (setq end (car bds))))
+      (goto-char start) (insert text)
+      (goto-char end) (insert text)))
+
   ;; ===========================================================================
   ;;                coding config
   ;; ===========================================================================
