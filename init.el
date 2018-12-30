@@ -666,11 +666,11 @@ dump."
         '(("t" "Task" entry (file+headline org-task-file "Task")
            "* TODO [#B] %^{HEADLINE}\n  Des: %?"
            :empty-lines 1)
-          ("r" "Record" entry (file+headline org-task-file "Recd")
+          ("r" "Record" entry (file+headline org-task-file "Record")
            "* DONE %^{HEADLINE}\n  Des: %?"
            :empty-lines 1)
           ("i" "Idea" entry (file org-idea-file)
-           "* %^{HEADLINE} - %u\n  %?"
+           "* %u - %^{HEADLINE}\n  %?"
            :empty-lines 1)))
 
   (defun rgb-24bit/insert-clock-entry ()
