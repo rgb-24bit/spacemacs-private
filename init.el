@@ -656,7 +656,11 @@ dump."
       ;;           ("ABORT"    . ,green))))
 
       ;; M-RET keybinding set
-      (org-defkey org-mode-map [(meta return)] 'org-meta-return)))
+      (org-defkey org-mode-map [(meta return)] 'org-meta-return)
+
+      ;; Convenient timing
+      (org-defkey org-mode-map [(f5)] 'org-clock-in)
+      (org-defkey org-mode-map [(f8)] 'org-clock-out)))
 
   ;; Org-capture template settings
   (setq org-task-file "~/Desktop/org/task.org")
@@ -664,10 +668,10 @@ dump."
 
   (setq org-capture-templates
         '(("t" "Task" entry (file+headline org-task-file "Task")
-           "* TODO [#B] %^{HEADLINE}\n  Des: %?"
+           "* TODO [#B] %^{HEADLINE} %^g\n  Des: %?"
            :empty-lines 1)
           ("r" "Record" entry (file+headline org-task-file "Record")
-           "* DONE %^{HEADLINE}\n  Des: %?"
+           "* DONE %^{HEADLINE} %^g\n  Des: %?"
            :empty-lines 1)
           ("i" "Idea" entry (file org-idea-file)
            "* %u - %^{HEADLINE}\n  %?"
