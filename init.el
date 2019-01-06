@@ -643,7 +643,7 @@ dump."
       ;; ===========================================================================
 
       (setq org-todo-keywords
-            '((sequence "TODO(t!)" "NEXT(n)" "WAITTING(w)" "SOMEDAY(s)" "MAYBE(m)" "|" "DONE(d@/!)" "ABORT(a@/!)")))
+            '((sequence "TODO(t!)" "NEXT(n)" "WAIT(w)" "|" "DONE(d@/!)" "ABORT(a@/!)")))
 
       ;; (let ((red "#dc322f") (green "#859900") (blue "#268bd2") (violet "#6c71c4"))
       ;;   (setq org-todo-keyword-faces
@@ -673,7 +673,7 @@ dump."
           ("r" "Record" entry (file+headline org-task-file "Record")
            "* DONE %^{HEADLINE} %^g\n  Des: %?"
            :empty-lines 1)
-          ("i" "Idea" entry (file org-idea-file)
+          ("i" "Idea" entry (file+headline org-idea-file "Idea")
            "* %u - %^{HEADLINE}\n  %?"
            :empty-lines 1)))
 
