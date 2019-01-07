@@ -668,10 +668,10 @@ dump."
 
   (setq org-capture-templates
         '(("t" "Task" entry (file+headline org-task-file "Task")
-           "* TODO [#B] %^{HEADLINE} %^g\n  Des: %?"
+           "* TODO [#B] %^{HEADLINE} %^g\n  %?"
            :empty-lines 1)
           ("r" "Record" entry (file+headline org-task-file "Record")
-           "* DONE %^{HEADLINE} %^g\n  Des: %?"
+           "* DONE [#B] %^{HEADLINE} %^g\n  %?"
            :empty-lines 1)
           ("i" "Idea" entry (file+headline org-idea-file "Idea")
            "* %u - %^{HEADLINE}\n  %?"
