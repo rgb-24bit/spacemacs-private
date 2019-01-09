@@ -698,6 +698,22 @@ dump."
     (sp-local-pair 'web-mode "{" nil :actions nil))
 
   ;; ===========================================================================
+  ;;                my ivy function
+  ;; ===========================================================================
+
+  (defun rgb-24bit/ivy-read ()
+    "Used to call my own defined function."
+    (interactive)
+    (ivy-read "Function:"
+              '(rgb-24bit/insert-clock-entry
+                rgb-24bit/insert-around-word-or-region)
+              :action (lambda (x)
+                        (command-execute
+                         (intern x)))))
+
+  (global-set-key (kbd "M-n") 'rgb-24bit/ivy-read)
+
+  ;; ===========================================================================
   ;;                custom file config
   ;; ===========================================================================
 
