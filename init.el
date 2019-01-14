@@ -90,7 +90,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-additional-packages '(cnfonts edit-indirect)
 
    ;; A list of packages that cannot be updated.
-   dotspacemacs-frozen-packages '()
+   dotspacemacs-frozen-packages '(org-plus-contrib)
 
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages
@@ -683,6 +683,12 @@ dump."
     (org-clock-in)
     (org-clock-out))
 
+  (defun rgb-24bit/org-delete-element ()
+    "Delete org element."
+    (interactive)
+    (org-mark-element)
+    (kill-region (region-beginning) (region-end)))
+
   ;; ===========================================================================
   ;;                front-end config
   ;; ===========================================================================
@@ -706,7 +712,9 @@ dump."
     (interactive)
     (ivy-read "Function:"
               '(rgb-24bit/insert-clock-entry
-                rgb-24bit/insert-around-word-or-region)
+                rgb-24bit/insert-around-word-or-region
+                rgb-24bit/org-delete-element
+                )
               :action (lambda (x)
                         (command-execute
                          (intern x)))))
