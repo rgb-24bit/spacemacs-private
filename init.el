@@ -580,6 +580,12 @@ dump."
   (setq c-default-style "linux"
         c-basic-offset 2)
 
+  ;; https://emacs-china.org/t/topic/5319
+  ;; (setq-default sp-autoinsert-pair nil
+  ;;               sp-autodelete-pair nil
+  ;;               sp-autoskip-closing-pair nil
+  ;;               sp-escape-quotes-after-insert nil)
+
   ;; comments style setting
   (add-hook 'c-mode-hook (lambda () (c-toggle-comment-style)))
 
@@ -707,6 +713,12 @@ dump."
   ;;                my ivy function
   ;; ===========================================================================
 
+  (defun rgb-24bit/insert-keybinding (key)
+    "Insert key binding string."
+    (interactive "kType key sequence: ")
+    (if (null (equal key "\r"))
+        (insert (help-key-description key nil))))
+
   (defun rgb-24bit/ivy-read ()
     "Used to call my own defined function."
     (interactive)
@@ -714,6 +726,7 @@ dump."
               '(rgb-24bit/insert-clock-entry
                 rgb-24bit/insert-around-word-or-region
                 rgb-24bit/org-delete-element
+                rgb-24bit/insert-keybinding
                 )
               :action (lambda (x)
                         (command-execute
