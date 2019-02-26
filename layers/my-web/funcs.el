@@ -1,23 +1,5 @@
 ;;; funcs.el --- my-web layer function file for Spacemacs.
 
-(defun my-imp-visit-buffer ()
-  "Visit the buffer in a browser."
-  (interactive)
-  (impatient-mode)
-  (browse-url
-   (format "http://%s:%d/imp/live/%s/"
-           "localhost" httpd-port (url-hexify-string (buffer-name)))))
-
-(defun spacemacs/impatient-mode ()
-  (interactive)
-  (if (bound-and-true-p impatient-mode)
-      (impatient-mode -1)
-    (unless (process-status "httpd")
-      (httpd-start))
-    (impatient-mode)
-    (when (string-match-p "\\.html\\'" (buffer-name))
-      (my-imp-visit-buffer))))
-
 (defun spacemacs/js-doc-set-key-bindings (mode)
   "Setup the key bindings for `js2-doc' for the given MODE."
   (spacemacs/declare-prefix-for-mode mode "md" "documentation")

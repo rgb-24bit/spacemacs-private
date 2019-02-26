@@ -9,6 +9,7 @@
     ;; for html
     web-mode
     (company-web :requires company)
+    emmet-mode
 
     ;; for css
     css-mode
@@ -37,6 +38,11 @@
       (spacemacs/set-leader-keys-for-major-mode 'css-mode "=" 'web-beautify-css)
       (spacemacs/set-leader-keys-for-major-mode 'js2-mode "=" 'web-beautify-js))))
 
+(defun my-web/init-emmet-mode ()
+  (use-package emmet-mode
+    :defer t
+    :init (spacemacs/add-to-hooks 'emmet-mode '(web-mode-hook))))
+
 (defun my-web/init-web-mode ()
   (use-package web-mode
     :defer t
@@ -62,7 +68,8 @@
         "rk" 'web-mode-element-kill
         "rr" 'web-mode-element-rename
         "rw" 'web-mode-element-wrap
-        "z" 'web-mode-fold-or-unfold)
+        "z" 'web-mode-fold-or-unfold
+        "i" 'browse-url-of-file)
 
       ;; =======================================================================
       ;; web-mode theme
@@ -82,6 +89,8 @@
 
       ;; indentation settings
       (setq web-mode-markup-indent-offset 2)
+      (setq web-mode-css-indent-offset 2)
+      (setq web-mode-code-indent-offset 2)
 
       ;; colorization config
       (setq web-mode-enable-css-colorization t))
