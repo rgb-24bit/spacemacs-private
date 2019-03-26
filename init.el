@@ -706,8 +706,7 @@ dump."
   (setq-default js2-basic-offset 2)
   (setq-default js-indent-level 2)
 
-  (with-eval-after-load 'web-mode
-    (sp-local-pair 'web-mode "{" nil :actions nil))
+  (add-hook 'web-mode-hook 'turn-off-smartparens-mode)
 
   ;; ===========================================================================
   ;;                my ivy function
