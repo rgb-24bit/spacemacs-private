@@ -532,6 +532,9 @@ dump."
   (setq user-full-name "rgb-24bit")
   (setq user-mail-address "rgb-24bit@foxmail.com")
 
+  ;; linumer align right
+  (setq display-line-numbers-width-start t)
+
   (defun rgb-24bit/insert-around-word-or-region (text)
     "The inserted content surrounds the word or region."
     (interactive "sInsert: ")
