@@ -550,6 +550,17 @@ dump."
       (goto-char start) (insert text)
       (goto-char end) (insert text)))
 
+  ;; Minimize frame when editing is complete
+  ;; Refrence:
+  ;;    https://www.emacswiki.org/emacs/EmacsClient
+  ;;    https://www.emacswiki.org/emacs/YesOrNoP
+  (defun rgb-24bit/server-done ()
+    "Minimize frame when editing is complete."
+    (if (y-or-n-p "Whether to minimize the frame ?")
+        (suspend-frame)))
+
+  (add-hook 'server-done-hook 'rgb-24bit/server-done)
+
   ;; ===========================================================================
   ;;                coding config
   ;; ===========================================================================
