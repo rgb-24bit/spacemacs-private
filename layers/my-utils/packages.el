@@ -4,8 +4,9 @@
   '((insert-translated-name :location local)
     (flex :location local)
     (bison :location local)
-    (restclient :location local))
-  )
+    (restclient :location local)
+    (auto-save :location local)
+    ))
 
 (defun my-utils/init-insert-translated-name ()
   (use-package insert-translated-name
@@ -29,5 +30,11 @@
     :defer t
     :mode ("\\.http\\'" . restclient-mode)))
 
+(defun my-utils/init-auto-save ()
+  (use-package auto-save
+    :config
+    (progn
+      (auto-save-enable)
+      (setq auto-save-silent t))))
 
 ;;; packages.el ends here

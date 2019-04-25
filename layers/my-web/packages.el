@@ -18,6 +18,8 @@
     ;; for javascript
     js2-mode
     js-doc
+    tern
+    (company-tern :requires company)
     )
   )
 
@@ -26,7 +28,7 @@
     :backends company-css
     :modes css-mode)
   (spacemacs|add-company-backends
-    :backends company-capf
+    :backends company-tern
     :modes js2-mode))
 
 (defun my-web/init-web-beautify ()
@@ -154,5 +156,15 @@
     :config
     (setq js-doc-mail-address "rgb-24bit@foxmail.com"
           js-doc-author (format "rgb-24bit <%s>" js-doc-mail-address))))
+
+(defun my-web/init-tern ()
+  (use-package tern
+    :defer t
+    :config
+    (add-hook 'js2-mode-hook (tern-mode))))
+
+(defun my-web/init-company-tern ()
+  (use-package company-tern
+    :defer t))
 
 ;;; packages.el ends here
