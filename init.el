@@ -477,9 +477,11 @@ See the header of this file for more information."
   ;; ===========================================================================
 
   (setq configuration-layer-elpa-archives
-        '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
-          ("org-cn"   . "http://elpa.emacs-china.org/org/")
-          ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
+        '(("melpa-tuna" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+          ("gnu-tuna"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+          ("melpa-cn"   . "http://elpa.emacs-china.org/melpa/")
+          ("org-cn"     . "http://elpa.emacs-china.org/org/")
+          ("gnu-cn"     . "http://elpa.emacs-china.org/gnu/")))
 
   ;; ===========================================================================
   ;; chinese and english font config
