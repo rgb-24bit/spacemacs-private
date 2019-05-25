@@ -562,7 +562,8 @@ dump."
     (if (y-or-n-p "Whether to minimize the frame ?")
         (suspend-frame)))
 
-  (add-hook 'server-done-hook 'rgb-24bit/server-done)
+  ;; use emacsclient -c is better
+  ;; (add-hook 'server-done-hook 'rgb-24bit/server-done)
 
   ;; ===========================================================================
   ;;                coding config
