@@ -69,8 +69,8 @@ This function should only modify configuration layer settings."
      (python :variables
              python-backend 'anaconda)
      (c-c++ :variables
-               c-c++-enable-google-style t
-               c-c++-default-mode-for-headers 'c-mode)
+            c-c++-enable-google-style t
+            c-c++-default-mode-for-headers 'c-mode)
 
      ;; my layers
      ;; my-python
@@ -687,19 +687,66 @@ dump."
       (org-defkey org-mode-map [(f8)] 'org-clock-out)))
 
   ;; Org-capture template settings
-  (setq org-task-file "~/Desktop/org/task.org")
-  (setq org-idea-file "~/Desktop/org/idea.org")
+  (setq org-task-file "~/record/task/task.org")
+  (setq org-idea-file "~/record/idea/idea.org")
 
   (setq org-capture-templates
         '(("t" "Task" entry (file+headline org-task-file "Task")
            "* TODO [#B] %^{HEADLINE} %^g\n  %?"
            :empty-lines 1)
-          ("r" "Record" entry (file+headline org-task-file "Record")
-           "* DONE [#B] %^{HEADLINE} %^g\n  %?"
+          ("d" "Done" entry (file+headline org-task-file "Done")
+           "* DONE %^{HEADLINE} %^g\n  %?"
            :empty-lines 1)
           ("i" "Idea" entry (file+headline org-idea-file "Idea")
            "* %u - %^{HEADLINE}\n  %?"
            :empty-lines 1)))
+
+  ;; clock table group by tags
+  ;; https://gist.github.com/rgb-24bit/deaa3ac4fe588cab7d2661fa69a4439b
+  (defun clocktable-by-tag/shift-cell (n)
+    (let ((str ""))
+      (dotimes (i n)
+        (setq str (concat str "| ")))
+      str))
+
+  (defun clocktable-by-tag/insert-tag (params)
+    (let ((tag (plist-get params :tags)))
+      (insert "|--\n")
+      (insert (format "| %s | *Tag time* |\n" tag))
+      (insert "|--\n")
+      (let ((total 0))
+        ;;      (mapcar
+        (mapc
+         (lambda (file)
+           (let ((clock-data (with-current-buffer (find-file-noselect file)
+                               (org-clock-get-table-data (buffer-name) params))))
+             (when (> (nth 1 clock-data) 0)
+               (setq total (+ total (nth 1 clock-data)))
+               ;; (insert (format "| | File *%s* | %.2f |\n"
+               ;;                 (file-name-nondirectory file)
+               ;;                 (/ (nth 1 clock-data) 60.0)))
+               (dolist (entry (nth 2 clock-data))
+                 (insert (format "| | %s%s | %s %.2f |\n"
+                                 (org-clocktable-indent-string (nth 0 entry))
+                                 (nth 1 entry)
+                                 (clocktable-by-tag/shift-cell (nth 0 entry))
+                                 (/ (nth 3 entry) 60.0)))))))
+         (org-agenda-files))
+        (save-excursion
+          (re-search-backward "*Tag time*")
+          (org-table-next-field)
+          (org-table-blank-field)
+          (insert (format "*%.2f*" (/ total 60.0)))))
+      (org-table-align)))
+
+  (defun org-dblock-write:clocktable-by-tag (params)
+    (insert "| Tag | Headline | Time (h) |\n")
+    ;; (insert "|     |          | <r>  |\n")
+    (let ((tags (plist-get params :tags)))
+      (mapcar (lambda (tag)
+                (setq params (plist-put params :tags tag))
+                (clocktable-by-tag/insert-tag params))
+              tags)))
 
   (defun rgb-24bit/insert-clock-entry ()
     "Insert a clock entity."
@@ -772,18 +819,18 @@ dump."
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (winum wgrep web-mode toc-org sql-indent spaceline-all-the-icons spaceline powerline smartparens plantuml-mode pipenv pyvenv paradox org-projectile projectile org-pomodoro alert org-mime org-download org-brain nameless mwim lsp-ui live-py-mode link-hint js2-mode ivy-hydra hl-todo highlight-indentation helm-make groovy-mode graphviz-dot-mode expand-region eval-sexp-fu editorconfig doom-modeline all-the-icons cython-mode counsel swiper company-lsp lsp-mode ht color-theme-sanityinc-solarized cnfonts centered-cursor-mode auto-yasnippet auto-compile aggressive-indent ace-window ace-link avy anaconda-mode pythonic auctex company yasnippet ivy markdown-mode f dash which-key use-package hydra lv async evil goto-chg yapfify yaml-mode ws-butler web-beautify volatile-highlights uuidgen unfill undo-tree symon string-inflection sqlup-mode spinner smex shrink-path restart-emacs rainbow-delimiters pytest py-isort popwin pippel pip-requirements pcre2el password-generator packed overseer origami org-present org-category-capture org-bullets open-junk-file move-text mmm-mode memoize markdown-toc macrostep lorem-ipsum log4e js-doc ivy-yasnippet ivy-xref indent-guide importmagic hungry-delete htmlize highlight-parentheses highlight-numbers highlight helm groovy-imports google-c-style golden-ratio gnuplot gntp gh-md fuzzy font-lock+ flycheck flx-ido fill-column-indicator fancy-battery evil-org emmet-mode elisp-slime-nav eldoc-eval edit-indirect dotenv-mode disaster diminish csharp-mode company-web company-tern company-statistics company-c-headers company-auctex company-anaconda command-log-mode column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol ac-ispell))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-)
+  (custom-set-variables
+   ;; custom-set-variables was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(package-selected-packages
+     (quote
+      (winum wgrep web-mode toc-org sql-indent spaceline-all-the-icons spaceline powerline smartparens plantuml-mode pipenv pyvenv paradox org-projectile projectile org-pomodoro alert org-mime org-download org-brain nameless mwim lsp-ui live-py-mode link-hint js2-mode ivy-hydra hl-todo highlight-indentation helm-make groovy-mode graphviz-dot-mode expand-region eval-sexp-fu editorconfig doom-modeline all-the-icons cython-mode counsel swiper company-lsp lsp-mode ht color-theme-sanityinc-solarized cnfonts centered-cursor-mode auto-yasnippet auto-compile aggressive-indent ace-window ace-link avy anaconda-mode pythonic auctex company yasnippet ivy markdown-mode f dash which-key use-package hydra lv async evil goto-chg yapfify yaml-mode ws-butler web-beautify volatile-highlights uuidgen unfill undo-tree symon string-inflection sqlup-mode spinner smex shrink-path restart-emacs rainbow-delimiters pytest py-isort popwin pippel pip-requirements pcre2el password-generator packed overseer origami org-present org-category-capture org-bullets open-junk-file move-text mmm-mode memoize markdown-toc macrostep lorem-ipsum log4e js-doc ivy-yasnippet ivy-xref indent-guide importmagic hungry-delete htmlize highlight-parentheses highlight-numbers highlight helm groovy-imports google-c-style golden-ratio gnuplot gntp gh-md fuzzy font-lock+ flycheck flx-ido fill-column-indicator fancy-battery evil-org emmet-mode elisp-slime-nav eldoc-eval edit-indirect dotenv-mode disaster diminish csharp-mode company-web company-tern company-statistics company-c-headers company-auctex company-anaconda command-log-mode column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol ac-ispell))))
+  (custom-set-faces
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   )
+  )
