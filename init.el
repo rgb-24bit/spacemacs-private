@@ -698,7 +698,7 @@ dump."
            "* DONE %^{HEADLINE} %^g\n  %?"
            :empty-lines 1)
           ("i" "Idea" entry (file+headline org-idea-file "Idea")
-           "* %u - %^{HEADLINE}\n  %?"
+           "* %^{HEADLINE}\n  %?"
            :empty-lines 1)))
 
   ;; clock table group by tags
@@ -731,7 +731,7 @@ dump."
                                  (nth 1 entry)
                                  (clocktable-by-tag/shift-cell (nth 0 entry))
                                  (/ (nth 3 entry) 60.0)))))))
-         (org-agenda-files))
+         `(,buffer-file-name))
         (save-excursion
           (re-search-backward "*Tag time*")
           (org-table-next-field)
