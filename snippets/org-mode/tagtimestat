@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: tagtimestat
+# key: tagtimestat
+# --
+#+BEGIN: clocktable-by-tag :block $1 :maxlevel 1 :tags ($0)
+#+END:
