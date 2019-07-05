@@ -56,6 +56,7 @@ This function should only modify configuration layer settings."
      ;; tools layers
      lsp
      command-log
+     finance
 
      ;; lang layers
      graphviz
@@ -635,6 +636,7 @@ dump."
         '((C          . t)
           (sql        . t)
           (java       . t)
+          (ledger     . t)
           (latex      . t)
           (sqlite     . t)
           (python     . t)
