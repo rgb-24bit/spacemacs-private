@@ -491,20 +491,18 @@ See the header of this file for more information."
 
   (set-face-attribute
    'default nil
-   :font (font-spec :name "-outline-Source Code Pro-bold-normal-normal-mono-*-*-*-*-c-*-iso10646-1"
+   :font (font-spec :name "-*-Source Code Pro-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1"
                     :weight 'normal
                     :slant 'normal
-                    :size 9.0))
-
-  (if window-system
-      (dolist (charset '(kana han symbol cjk-misc bopomofo))
-        (set-fontset-font
-         (frame-parameter nil 'font)
-         charset
-         (font-spec :name "-outline-微软雅黑-normal-normal-normal-sans-*-*-*-*-p-*-iso10646-1"
-                    :weight 'normal
-                    :slant 'normal
-                    :size 10.5))))
+                    :size 14))
+  (dolist (charset '(kana han symbol cjk-misc bopomofo))
+    (set-fontset-font
+     (frame-parameter nil 'font)
+     charset
+     (font-spec :name "-*-STKaiti-normal-normal-normal-*-*-*-*-*-p-0-iso10646-1"
+                :weight 'normal
+                :slant 'normal
+                :size 16.5)))
   )
 
 (defun dotspacemacs/user-load ()
@@ -660,6 +658,9 @@ dump."
   ;; The setting code is highlighted
   (setq org-src-fontify-natively t)
 
+  ;; simple template'
+  (require 'org-tempo)
+
   ;; Some config
   (with-eval-after-load 'org
     (progn
@@ -689,8 +690,8 @@ dump."
       (org-defkey org-mode-map [(f8)] 'org-clock-out)))
 
   ;; Org-capture template settings
-  (setq org-task-file "~/record/task/task.org")
-  (setq org-idea-file "~/record/idea/idea.org")
+  (setq org-task-file "~/record/task/jobt.org")
+  (setq org-idea-file "~/record/idea/jobi.org")
 
   (setq org-capture-templates
         '(("t" "Task" entry (file+headline org-task-file "Task")
