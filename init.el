@@ -54,35 +54,42 @@ This function should only modify configuration layer settings."
 
      ;; emacs layers
      better-defaults
+     ibuffer
      org
 
      ;; tools layers
      lsp
      command-log
      finance
+     (osx :variables
+          osx-command-as       'meta
+          osx-option-as        'hyper
+          osx-control-as       'control
+          osx-function-as      'control
+          osx-right-command-as 'left
+          osx-right-option-as  'left
+          osx-right-control-as 'left
+          osx-swap-option-and-command nil)
+     (shell :variables
+            shell-default-position 'full)
 
      ;; lang layers
-     graphviz
-     yaml
+     csv
      emacs-lisp
+     html
+     json
      markdown
-     latex
      plantuml
-     (sql :variables
-          sql-capitalize-keywords t)
      (python :variables
              python-backend 'anaconda)
-     (c-c++ :variables
-            c-c++-enable-google-style t
-            c-c++-default-mode-for-headers 'c-mode)
+     shell-scripts
+     (sql :variables
+          sql-capitalize-keywords t)
+     yaml
 
      ;; my layers
-     ;; my-python
-     my-csharp
-     my-java
-     my-web
+     my-packages
      my-utils
-     ;; my-themes
      )
 
    ;; List of additional packages that will be installed without being
@@ -92,7 +99,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(cnfonts edit-indirect)
+   dotspacemacs-additional-packages '()
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -100,18 +107,8 @@ This function should only modify configuration layer settings."
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages
    '(
-     ;; spacemacs
-     writeroom-mode
-
      ;; auto-completion
      yasnippet-snippets
-
-     ;; python layer, windows, not use
-     pyenv-mode lsp-python
-
-     ;; c-c++ layer
-     clang-format company-rtags company-ycmd gdb-mi flycheck-rtags
-     helm-rtags ivy-rtags rtags cquery ccls
      )
 
    ;; Defines the behaviour of Spacemacs when installing packages.
@@ -578,6 +575,15 @@ dump."
   ;; (add-hook 'server-done-hook 'rgb-24bit/server-done)
 
   ;; ===========================================================================
+  ;; Magit config
+  ;; ===========================================================================
+
+  ;; repository list config
+  (setq magit-repository-directories
+        '(("~/rgbit" . 1)
+          ("~/job"   . 1)))
+
+  ;; ===========================================================================
   ;;                coding config
   ;; ===========================================================================
 
@@ -589,11 +595,11 @@ dump."
   ;; ===========================================================================
 
   ;;  make ibuffer default
-  (defalias 'list-buffers 'ibuffer)
+  ;; (defalias 'list-buffers 'ibuffer)
 
   ;; hide all buffers starting with an asterisk
-  (require 'ibuf-ext)
-  (add-to-list 'ibuffer-never-show-predicates "^\\*")
+  ;; (require 'ibuf-ext)
+  ;; (add-to-list 'ibuffer-never-show-predicates "^\\*")
 
   ;; ===========================================================================
   ;;                dired-x config
@@ -601,6 +607,9 @@ dump."
 
   ;; https://github.com/syl20bnr/spacemacs/issues/9813
   (require 'dired-x)
+
+  ;; More friendly file size display
+  (setq-default dired-listing-switches "-alh")
 
   ;; ===========================================================================
   ;;                c-c++ config
@@ -777,7 +786,7 @@ dump."
     (kill-region (region-beginning) (region-end)))
 
   ;; ===========================================================================
-  ;;                front-end config
+  ;;                html, css, js, json config
   ;; ===========================================================================
 
   ;; css offset
@@ -787,7 +796,23 @@ dump."
   (setq-default js2-basic-offset 2)
   (setq-default js-indent-level 2)
 
-  (add-hook 'web-mode-hook 'turn-off-smartparens-mode)
+  ;; web-mode theme
+  (with-eval-after-load 'web-mode
+    (set-face-attribute 'web-mode-doctype-face nil :foreground "#586e75")
+    (set-face-attribute 'web-mode-html-tag-face nil :foreground "#859900")
+    (set-face-attribute 'web-mode-html-tag-bracket-face nil :foreground "#586e75")
+    (set-face-attribute 'web-mode-html-attr-name-face nil :foreground "#268bd2")
+    (set-face-attribute 'web-mode-html-attr-value-face nil :foreground "#2aa198")
+    (set-face-attribute 'web-mode-html-attr-equal-face nil :foreground "#268bd2")
+    (set-face-attribute 'web-mode-html-tag-custom-face nil :foreground "#859900"))
+
+  ;; indentation settings
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+
+  ;; colorization config
+  (setq web-mode-enable-css-colorization t)
 
   ;; ===========================================================================
   ;;                my ivy function
