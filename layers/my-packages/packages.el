@@ -4,7 +4,7 @@
   '((css-sort-buffer :location local))
   )
 
-(defun my-packages/css-sort-buffer ()
+(defun my-packages/init-css-sort-buffer ()
   (use-package css-sort-buffer))
 
 ;;; packages.el ends here
