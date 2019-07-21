@@ -680,8 +680,11 @@ dump."
   ;; The setting code is highlighted
   (setq org-src-fontify-natively t)
 
-  ;; simple template'
+  ;; simple template
   (require 'org-tempo)
+
+  ;; system time locale
+  (setq system-time-locale "zh_CN.UTF-8")
 
   ;; Some config
   (with-eval-after-load 'org
