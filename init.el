@@ -54,7 +54,7 @@ This function should only modify configuration layer settings."
 
      ;; emacs layers
      better-defaults
-     ibuffer
+     (ibuffer :variables ibuffer-group-buffers-by 'projects)
      org
 
      ;; tools layers
