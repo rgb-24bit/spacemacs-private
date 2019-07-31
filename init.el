@@ -60,6 +60,7 @@ This function should only modify configuration layer settings."
      ;; tools layers
      lsp
      command-log
+     docker
      finance
      (osx :variables
           osx-command-as       'meta
@@ -639,6 +640,9 @@ dump."
 
   ;; fix elpy bug
   (setq python-shell-completion-native-enable nil)
+
+  ;; python interpreter path
+  (setq python-shell-interpreter "/usr/local/bin/python3")
 
   ;; ===========================================================================
   ;;                groovy config
