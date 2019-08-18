@@ -54,7 +54,7 @@ This function should only modify configuration layer settings."
 
      ;; emacs layers
      better-defaults
-     (ibuffer :variables ibuffer-group-buffers-by 'projects)
+     (ibuffer :variables ibuffer-group-buffers-by 'nil)
      org
 
      ;; tools layers
@@ -64,7 +64,7 @@ This function should only modify configuration layer settings."
      finance
      (osx :variables
           osx-command-as       'meta
-          osx-option-as        'hyper
+          osx-option-as        'meta
           osx-control-as       'control
           osx-function-as      'control
           osx-right-command-as 'left
@@ -532,6 +532,9 @@ dump."
   (when (eq system-type 'windows-nt)
     (setq-default w32-system-coding-system 'cp936-dos))
 
+  ;; macos locate command config
+  (when (spacemacs/system-is-mac) (setq locate-command "mdfind"))
+
   ;; no minor-modes
   (spacemacs/toggle-mode-line-minor-modes-off)
 
@@ -547,6 +550,16 @@ dump."
 
   ;; linumer align right
   (setq display-line-numbers-width-start t)
+
+  ;; recent files
+  (global-set-key "\C-x\ \C-r" 'counsel-recentf)
+
+  ;; text up/down
+  (move-text-default-bindings)
+
+  ;; Automatically split the window to the right
+  ;; (setq split-height-threshold 160)
+  ;; (setq split-width-threshold 80)
 
   (defun rgb-24bit/insert-around-word-or-region (text)
     "The inserted content surrounds the word or region."
@@ -581,8 +594,9 @@ dump."
 
   ;; repository list config
   (setq magit-repository-directories
-        '(("~/rgbit" . 1)
-          ("~/job"   . 1)))
+        '(("~/repositories" . 2)
+          ("~/.emacs.d"     . 0)
+          ("~/.spacemacs.d" . 0)))
 
   ;; ===========================================================================
   ;;                coding config
@@ -719,8 +733,8 @@ dump."
       (org-defkey org-mode-map [(f8)] 'org-clock-out)))
 
   ;; Org-capture template settings
-  (setq org-task-file "~/rgbit/record/task/jobt.org")
-  (setq org-idea-file "~/rgbit/record/idea/jobi.org")
+  (setq org-task-file "~/repositories/rgb-24bit/record/task/jobt.org")
+  (setq org-idea-file "~/repositories/rgb-24bit/record/idea/jobi.org")
 
   (setq org-capture-templates
         '(("t" "Task" entry (file+headline org-task-file "Task")
