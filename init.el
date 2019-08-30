@@ -594,9 +594,7 @@ dump."
 
   ;; repository list config
   (setq magit-repository-directories
-        '(("~/repositories" . 2)
-          ("~/.emacs.d"     . 0)
-          ("~/.spacemacs.d" . 0)))
+        '(("~/repositories" . 2)))
 
   ;; ===========================================================================
   ;;                coding config
