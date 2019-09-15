@@ -89,6 +89,7 @@ This function should only modify configuration layer settings."
      yaml
 
      ;; my layers
+     my-c-c++
      my-packages
      my-utils
      )
