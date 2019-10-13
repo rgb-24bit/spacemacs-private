@@ -54,7 +54,7 @@ This function should only modify configuration layer settings."
      ;; emacs layers
      better-defaults
      (ibuffer :variables ibuffer-group-buffers-by 'nil)
-     org
+     (org :variables org-enable-github-support t)
 
      ;; tools layers
      lsp
@@ -72,7 +72,7 @@ This function should only modify configuration layer settings."
           osx-right-control-as 'left
           osx-swap-option-and-command nil)
      (shell :variables
-            shell-default-position 'full)
+            shell-default-position 'bottom)
 
      ;; lang layers
      csv
@@ -495,7 +495,6 @@ See the header of this file for more information."
   (setq configuration-layer-elpa-archives
         '(("melpa-tuna" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
           ("gnu-tuna"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-          ("melpa-cn"   . "http://elpa.emacs-china.org/melpa/")
           ("org-cn"     . "http://elpa.emacs-china.org/org/")
           ("gnu-cn"     . "http://elpa.emacs-china.org/gnu/")))
 
@@ -633,6 +632,12 @@ otherwise return regexp like \"\\\\_<sym\\\\_>\" for the symbol at point."
 
   (global-set-key (kbd "C-'") 'jester/toggle-highlight-at-point)
 
+  ;; view-mode
+  ;; https://stackoverflow.com/questions/1128927/how-to-scroll-line-by-line-in-gnu-emacs/16229080#16229080
+  (define-key view-mode-map (kbd "n") 'scroll-up-line)
+  (define-key view-mode-map (kbd "p") 'scroll-down-line)
+
+
   ;; ===========================================================================
   ;; Magit config
   ;; ===========================================================================
@@ -656,8 +661,9 @@ otherwise return regexp like \"\\\\_<sym\\\\_>\" for the symbol at point."
   ;; (defalias 'list-buffers 'ibuffer)
 
   ;; hide all buffers starting with an asterisk
-  ;; (require 'ibuf-ext)
-  ;; (add-to-list 'ibuffer-never-show-predicates "^\\*")
+  (require 'ibuf-ext)
+  (add-to-list 'ibuffer-never-show-predicates "^\\*")
+  (add-to-list 'ibuffer-never-show-predicates "^magit")
 
   ;; ===========================================================================
   ;;                dired-x config
