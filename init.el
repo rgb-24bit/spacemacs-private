@@ -104,7 +104,7 @@ This function should only modify configuration layer settings."
      yasnippet-snippets
 
      ;; python layer, windows, not use
-     pyenv-mode lsp-python
+     pyenv-mode lsp-python lsp-python-ms
 
      ;; c-c++ layer
      clang-format company-rtags company-ycmd gdb-mi flycheck-rtags
@@ -481,7 +481,6 @@ See the header of this file for more information."
   (setq configuration-layer-elpa-archives
         '(("melpa-tuna" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
           ("gnu-tuna"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-          ("melpa-cn"   . "http://elpa.emacs-china.org/melpa/")
           ("org-cn"     . "http://elpa.emacs-china.org/org/")
           ("gnu-cn"     . "http://elpa.emacs-china.org/gnu/")))
 
@@ -539,6 +538,21 @@ dump."
   ;; linumer align right
   (setq display-line-numbers-width-start t)
 
+  ;; swicth tab
+  (setq spacemacs-layouts-restrict-spc-tab nil)
+
+  ;; recent files
+  (global-set-key "\C-x\ \C-r" 'counsel-recentf)
+
+  ;; find files
+  (global-set-key (kbd "C-x f") 'counsel-find-file)
+
+  ;; text up/down move-text.el
+  (move-text-default-bindings)
+
+  ;; editing
+  (global-set-key (kbd "M-DEL") 'just-one-space)
+
   (defun rgb-24bit/insert-around-word-or-region (text)
     "The inserted content surrounds the word or region."
     (interactive "sInsert: ")
@@ -566,6 +580,46 @@ dump."
   ;; use emacsclient -c is better
   ;; (add-hook 'server-done-hook 'rgb-24bit/server-done)
 
+  ;; expand-region
+  (global-set-key (kbd "C-M-.") 'er/expand-region)
+  (global-set-key (kbd "C-M->") 'er/contract-region)
+
+  ;; highlight-symbol
+  (defun jester/toggle-highlight-at-point ()
+    "Toggle highlight at point (region or symbol)."
+    (interactive)
+    (require 'hi-lock)
+    (let ((hi-regexp-list (mapcar #'car hi-lock-interactive-patterns))
+          (hi-regexp-at-pt (jester/regexp-at-point))
+          (hi-lock-auto-select-face t))
+      (if (member hi-regexp-at-pt hi-regexp-list)
+          (unhighlight-regexp hi-regexp-at-pt)
+        (highlight-phrase hi-regexp-at-pt (hi-lock-read-face-name)))
+      (deactivate-mark)))
+
+  (defun jester/regexp-at-point ()
+    "if region active, return the region,
+otherwise return regexp like \"\\\\_<sym\\\\_>\" for the symbol at point."
+    (if (region-active-p)
+        (buffer-substring-no-properties
+         (region-beginning) (region-end))
+      (format "\\_<%s\\_>" (thing-at-point 'symbol t))))
+
+  (defun jester/clear-all-highlight ()
+    "clear all highlight."
+    (interactive)
+    (let ((hi-regexp-list (mapcar #'car hi-lock-interactive-patterns)))
+      (mapcar 'unhighlight-regexp hi-regexp-list)))
+
+  (global-set-key (kbd "C-'") 'jester/toggle-highlight-at-point)
+
+  ;; view-mode
+  ;; https://stackoverflow.com/questions/1128927/how-to-scroll-line-by-line-in-gnu-emacs/16229080#16229080
+  (with-eval-after-load 'view-mode
+    (progn
+      (define-key view-mode-map (kbd "p") 'scroll-down-line)
+      (define-key view-mode-map (kbd "n") 'scroll-up-line)))
+
   ;; ===========================================================================
   ;;                coding config
   ;; ===========================================================================
@@ -591,6 +645,9 @@ dump."
   ;; https://github.com/syl20bnr/spacemacs/issues/9813
   (require 'dired-x)
 
+  ;; More friendly file size display
+  (setq-default dired-listing-switches "-alh")
+  
   ;; ===========================================================================
   ;;                c-c++ config
   ;; ===========================================================================
