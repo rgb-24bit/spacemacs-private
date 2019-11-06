@@ -537,6 +537,12 @@ dump."
   ;; macos locate command config
   (when (spacemacs/system-is-mac) (setq locate-command "mdfind"))
 
+  ;; macos swipe key
+  (when (spacemacs/system-is-mac)
+    (progn
+      (global-set-key [swipe-left] nil)
+      (global-set-key [swipe-right] nil)))
+
   ;; no minor-modes
   (spacemacs/toggle-mode-line-minor-modes-off)
 
@@ -634,7 +640,7 @@ otherwise return regexp like \"\\\\_<sym\\\\_>\" for the symbol at point."
 
   ;; view-mode
   ;; https://stackoverflow.com/questions/1128927/how-to-scroll-line-by-line-in-gnu-emacs/16229080#16229080
-  (with-eval-after-load 'view-mode
+  (with-eval-after-load 'view
     (progn
       (define-key view-mode-map (kbd "n") 'scroll-up-line)
       (define-key view-mode-map (kbd "p") 'scroll-down-line)))
