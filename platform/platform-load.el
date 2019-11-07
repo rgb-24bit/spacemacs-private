@@ -15,10 +15,22 @@
    (concat (file-name-directory load-file-name) spacemacs-private-platform))
   "Save directory platform configurations")
 
+(defconst spacemacs-private-platform-startup-file
+  (concat spacemacs-private-platform-directory "platform.el")
+  "Save the platform-specific configuration file.")
+
+(defun spacemacs-private-find-startup-file ()
+  "Open the appropriate platform configuration file."
+  (interactive)
+  (find-file-existing spacemacs-private-platform-startup-file))
+
 ;; Load the platform configuration
-(load (concat spacemacs-private-platform-directory "init.el"))
+(load spacemacs-private-platform-startup-file nil (not init-file-debug))
 
 ;; Layers related variable loading
 (spacemacs-private-for-platform/layers)
+
+;; init related variable loading
+(spacemacs-private-for-platform/init)
 
 ;;; platform-load.el ends here
