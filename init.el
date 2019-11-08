@@ -549,8 +549,8 @@ otherwise return regexp like \"\\\\_<sym\\\\_>\" for the symbol at point."
   ;; https://www.emacswiki.org/emacs/ChangingEncodings
   (modify-coding-system-alist 'file "\\.sh\\'" 'unix)
 
-  ;;  make ibuffer default
-  ;; (defalias 'list-buffers 'ibuffer)
+  ;; make ibuffer default
+  (defalias 'list-buffers 'ibuffer)
 
   ;; hide all buffers starting with an asterisk
   (require 'ibuf-ext)
