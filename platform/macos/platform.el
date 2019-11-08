@@ -39,7 +39,10 @@
      (org :variables org-enable-github-support t)
 
      ;; tools layers
-     lsp
+     dap
+     (lsp :variables
+          lsp-ui-doc-enable nil)
+
      command-log
      docker
      finance
@@ -57,6 +60,9 @@
             shell-default-position 'bottom)
 
      ;; lang layers
+     (c-c++ :variables
+            c-c++-default-mode-for-headers 'c-mode
+            c-c++-backend 'lsp-cquery)
      csv
      emacs-lisp
      html
@@ -64,14 +70,13 @@
      markdown
      plantuml
      (python :variables
-             python-backend 'anaconda)
+             python-backend 'lsp)
      shell-scripts
      (sql :variables
           sql-capitalize-keywords t)
      yaml
 
      ;; my layers
-     my-c-c++
      my-packages
      my-utils
      )
@@ -148,6 +153,18 @@
   (global-set-key [swipe-right] nil)
 
   ;; ===========================================================================
+  ;; Lsp config
+  ;; ===========================================================================
+
+  (setq-default
+   ;; Disable snippet completion support
+   lsp-enable-snippet nil
+
+   ;; Disable lsp-ui-sideline
+   lsp-ui-sideline-enable
+   )
+
+  ;; ===========================================================================
   ;; Magit config
   ;; ===========================================================================
 
@@ -168,6 +185,12 @@
   ;;               sp-autodelete-pair nil
   ;;               sp-autoskip-closing-pair nil
   ;;               sp-escape-quotes-after-insert nil)
+
+  ;; Disaster project root file
+  (setq disaster-project-root-files
+        '(("Makefile")
+          ("setup.py" "package.json")
+          (".git/")))
 
   ;; comments style setting
   (add-hook 'c-mode-hook (lambda () (c-toggle-comment-style)))
