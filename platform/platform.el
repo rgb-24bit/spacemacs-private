@@ -31,7 +31,7 @@
    spacemacs-private/dotspacemacs-excluded-packages '()
    ))
 
-(defun spacemacs-private/init ()
+(defun spacemacs-private-for-platform/init ()
   "Configuring spacemacs initialization configuration."
   (setq-default
    ;; List of themes, the first of the list is loaded when spacemacs starts.
