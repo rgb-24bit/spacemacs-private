@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: erd-table
-# key: tbl
-# --
-$1 [shape=none, margin=0, label=<
-  <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
-  <tr><td bgcolor="#66CCFF">$2</td></tr>
-  $0
-  </table>>];

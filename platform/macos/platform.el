@@ -65,6 +65,7 @@
             c-c++-backend 'lsp-cquery)
      csv
      emacs-lisp
+     graphviz
      html
      json
      markdown

@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: erd-table-td
-# key: td
-# --
-<tr><td port="$1" align="left">$2</td></tr>
-$0
