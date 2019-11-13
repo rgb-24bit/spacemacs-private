@@ -76,8 +76,15 @@
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   spacemacs-private/dotspacemacs-themes '(spacemacs-dark
-                                           spacemacs-light)
+   spacemacs-private/dotspacemacs-themes '((sanityinc-solarized-dark
+                                            :location (recipe :fetcher github
+                                                              :repo "rgb-24bit/color-theme-sanityinc-solarized"))
+                                           (sanityinc-solarized-light
+                                            :location (recipe :fetcher github
+                                                              :repo "rgb-24bit/color-theme-sanityinc-solarized"))
+                                           spacemacs-dark
+                                           spacemacs-light
+                                           )
 
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
