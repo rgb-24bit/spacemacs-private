@@ -242,6 +242,7 @@
 
   ;; Org-capture template settings
   (setq org-task-file "~/record/task/task.org")
+  (setq org-memo-file "~/record/task/memo.org")
   (setq org-idea-file "~/record/idea/idea.org")
 
   (setq org-capture-templates
@@ -250,6 +251,9 @@
            :empty-lines 1)
           ("d" "Done" entry (file+headline org-task-file "Done")
            "* DONE %^{HEADLINE} %^g\n  %?"
+           :empty-lines 1)
+          ("m" "Memo" entry (file+headline org-memo-file "Memo")
+           "* TODO [#B] %^{HEADLINE} %^g\n  %?"
            :empty-lines 1)
           ("i" "Idea" entry (file+headline org-idea-file "Idea")
            "* %^{HEADLINE}\n  %?"
