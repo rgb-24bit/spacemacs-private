@@ -68,6 +68,7 @@
      graphviz
      html
      json
+     latex
      markdown
      plantuml
      (python :variables
@@ -89,7 +90,7 @@
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   spacemacs-private/dotspacemacs-additional-packages '()
+   spacemacs-private/dotspacemacs-additional-packages '(rust-mode)
 
    ;; A list of packages that cannot be updated.
    spacemacs-private/dotspacemacs-frozen-packages '()
@@ -219,6 +220,11 @@
   (setq groovy-indent-offset 2)
 
   ;; ===========================================================================
+  ;;                rust config
+  ;; ===========================================================================
+  (require 'rust-mode)
+
+  ;; ===========================================================================
   ;;                org config
   ;; ===========================================================================
 
@@ -303,6 +309,11 @@
           ("i" "Idea" entry (file+headline org-idea-file "Idea")
            "* %^{HEADLINE}\n  %?"
            :empty-lines 1)))
+
+  ;; org-refile setting
+  (setq org-refile-targets
+        '((org-agenda-files . (:tag . "part"))
+          (nil              . (:level . 1))))
 
   ;; clock table group by tags
   ;; https://gist.github.com/rgb-24bit/deaa3ac4fe588cab7d2661fa69a4439b
@@ -438,6 +449,9 @@
 
   ;; https://stackoverflow.com/questions/2477195/latex-indentation-formatting-in-emacs
   (setq LaTeX-item-indent 0)
+
+  ;; https://tex.stackexchange.com/questions/21200/auctex-and-xetex
+  (setq-default TeX-engine 'xetex)
   )
 
 ;;; platform.el ends here
