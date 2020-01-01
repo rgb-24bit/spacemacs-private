@@ -1,4 +1,8 @@
 ;;; platform.el --- MacOS platform configuration
+;;
+;; Formula: https://github.com/railwaycat/homebrew-emacsmacport
+;;
+;; Code:
 
 (defun spacemacs-private-for-platform/layers ()
   "Configuration layers for the appropriate platform."
@@ -57,6 +61,7 @@
           osx-right-control-as 'left
           osx-swap-option-and-command nil)
      (shell :variables
+            shell-default-shell 'vterm
             shell-default-position 'bottom)
 
      ;; lang layers
