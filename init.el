@@ -141,7 +141,7 @@ It should only modify the values of Spacemacs settings."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
-   dotspacemacs-startup-banner 'official
+   dotspacemacs-startup-banner "~/.spacemacs.d/banners/bannber.png"
 
    ;; List of items to show in startup buffer or an association list of
    ;; the form `(list-type . list-size)`. If nil then it is disabled.
@@ -491,10 +491,13 @@ dump."
   (global-set-key (kbd "M-DEL") 'just-one-space)
 
   ;; Automatically split the window to the right
+  ;; Refrence:
+  ;;    https://emacs.stackexchange.com/questions/2513/how-to-get-org-agenda-to-prefer-split-window-right
+  ;;    https://github.com/syl20bnr/spacemacs/issues/5140
   ;; (setq split-height-threshold 160)
   ;; (setq split-width-threshold 80)
 
-    ;; Minimize frame when editing is complete
+  ;; Minimize frame when editing is complete
   ;; Refrence:
   ;;    https://www.emacswiki.org/emacs/EmacsClient
   ;;    https://www.emacswiki.org/emacs/YesOrNoP
@@ -562,6 +565,17 @@ otherwise return regexp like \"\\\\_<sym\\\\_>\" for the symbol at point."
 
   ;; More friendly file size display
   (setq-default dired-listing-switches "-alh")
+
+  ;; dired follow mode
+  (define-minor-mode dired-follow-mode
+    "Diplay file at point in dired after a move."
+    :lighter " dired-f"
+    :global t
+    (if dired-follow-mode (advice-add 'dired-next-line
+                                      :after (lambda (arg)
+                                               (dired-display-file)))
+      (advice-remove 'dired-next-line (lambda (arg)
+                                        (dired-display-file)))))
 
   ;; ===========================================================================
   ;; Platform configuration

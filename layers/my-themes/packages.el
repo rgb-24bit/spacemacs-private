@@ -1,38 +1,38 @@
 ;;; packages.el --- my-themes layer packages file for Spacemacs.
-;;
-;; Copyright (c) 2012-2018 Sylvain Benner & Contributors
-;;
-;; Author: rgb-24bit <rgb-24bit@foxmail.com>
-;; URL: https://github.com/syl20bnr/spacemacs
-;;
-;; This file is not part of GNU Emacs.
-;;
-;;; License: GPLv3
-
-;;; Commentary:
-
-;; See the Spacemacs documentation and FAQs for instructions on how to implement
-;; a new layer:
-;;
-;;   SPC h SPC layers RET
-;;
-;;
-;; Briefly, each package to be installed or configured by this layer should be
-;; added to `my-themes-packages'. Then, for each package PACKAGE:
-;;
-;; - If PACKAGE is not referenced by any other Spacemacs layer, define a
-;;   function `my-themes/init-PACKAGE' to load and initialize the package.
-
-;; - Otherwise, PACKAGE is already referenced by another Spacemacs layer, so
-;;   define the functions `my-themes/pre-init-PACKAGE' and/or
-;;   `my-themes/post-init-PACKAGE' to customize the package as it is loaded.
-
-;;; Code:
 
 (defconst my-themes-packages
-  '((color-theme-sanityinc-solarized :location local)))
+  '((color-theme-sanityinc-solarized :location local)
+    dashboard
+    ))
 
 (defun my-themes/init-color-theme-sanityinc-solarized ()
   (use-package color-theme-sanityinc-solarized))
+
+(defun my-themes/init-dashboard ()
+  (use-package dashboard
+    :config
+    (progn
+      ;; setup dashboard
+      (dashboard-setup-startup-hook)
+      ;; Set the title
+      (setq dashboard-banner-logo-title "Welcome to Emacs Dashboard")
+
+      ;; Set the banner
+      (setq dashboard-startup-banner 'logo)
+      ;; Value can be
+      ;; 'official which displays the official emacs logo
+      ;; 'logo which displays an alternative emacs logo
+      ;; 1, 2 or 3 which displays one of the text banners
+      ;; "path/to/your/image.png" which displays whatever image you would prefer
+
+      ;; Content is not centered by default. To center, set
+      (setq dashboard-center-content t)
+
+      ;; To disable shortcut "jump" indicators for each section, set
+      (setq dashboard-show-shortcuts nil)
+
+      ;; items
+      (setq dashboard-items '((recents  . 5)
+                              (projects . 5))))))
 
 ;;; packages.el ends here
