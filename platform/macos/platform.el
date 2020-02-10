@@ -297,7 +297,7 @@
       (org-defkey org-mode-map [(f8)] 'org-clock-out)))
 
   ;; Org-capture template settings
-  (setq org-task-file "~/repositories/rgb-24bit/record/task/jobt.org")
+  (setq org-task-file "~/repositories/rgb-24bit/record/task/task.org")
   (setq org-idea-file "~/repositories/rgb-24bit/record/idea/jobi.org")
 
   (setq org-capture-templates
