@@ -2,11 +2,6 @@
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
-;; Load platform configuration
-(load (concat (file-name-directory load-file-name)
-              "platform/platform-load.el")
-      nil (not init-file-debug))
-
 (defun dotspacemacs/layers ()
   "Layer configuration:
 This function should only modify configuration layer settings."
@@ -14,7 +9,7 @@ This function should only modify configuration layer settings."
    ;; Base distribution to use. This is a layer contained in the directory
    ;; `+distribution'. For now available distributions are `spacemacs-base'
    ;; or `spacemacs'. (default 'spacemacs)
-   dotspacemacs-distribution spacemacs-private/dotspacemacs-distribution
+   dotspacemacs-distribution 'spacemacs-base
 
    ;; Lazy installation of layers (i.e. layers are installed only when a file
    ;; with a supported type is opened). Possible values are `all', `unused'
@@ -33,10 +28,31 @@ This function should only modify configuration layer settings."
 
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path spacemacs-private/dotspacemacs-configuration-layer-path
+   dotspacemacs-configuration-layer-path '("~/.spacemacs.d/layers/")
 
    ;; List of configuration layers to load.
-   dotspacemacs-configuration-layers spacemacs-private/dotspacemacs-configuration-layers
+   dotspacemacs-configuration-layers
+   '(
+     ;; spacemacs layers
+     spacemacs-completion
+     spacemacs-editing
+     spacemacs-editing-visual
+     spacemacs-modeline
+     spacemacs-navigation
+     spacemacs-org
+     spacemacs-project
+     spacemacs-visual
+
+     ;; completion layers
+     auto-completion
+     helm
+     ivy
+
+     ;; emacs layers
+     better-defaults
+     (ibuffer :variables ibuffer-group-buffers-by 'nil)
+     (org :variables org-enable-github-support t)
+     )
 
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -45,13 +61,17 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages spacemacs-private/dotspacemacs-additional-packages
+   dotspacemacs-additional-packages '()
 
    ;; A list of packages that cannot be updated.
-   dotspacemacs-frozen-packages spacemacs-private/dotspacemacs-frozen-packages
+   dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages spacemacs-private/dotspacemacs-excluded-packages
+   dotspacemacs-excluded-packages
+   '(
+     ;; auto-completion
+     yasnippet-snippets
+     )
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -170,7 +190,10 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes spacemacs-private/dotspacemacs-themes
+   dotspacemacs-themes '(sanityinc-solarized-dark
+                         sanityinc-solarized-light
+                         spacemacs-dark
+                         spacemacs-light)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
@@ -187,7 +210,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font spacemacs-private/dotspacemacs-default-font
+   dotspacemacs-default-font nil
 
    ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
@@ -439,12 +462,6 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
           ("gnu-tuna"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
           ("org-cn"     . "http://elpa.emacs-china.org/org/")
           ("gnu-cn"     . "http://elpa.emacs-china.org/gnu/")))
-
-  ;; ===========================================================================
-  ;; Platform configuration load
-  ;; ===========================================================================
-
-  (spacemacs-private-for-platform/user-init)
   )
 
 (defun dotspacemacs/user-load ()
@@ -508,6 +525,10 @@ dump."
 
   ;; use emacsclient -c is better
   ;; (add-hook 'server-done-hook 'rgb-24bit/server-done)
+
+  ;; company right align
+  ;; https://github.com/syl20bnr/spacemacs/issues/4624
+  (setq company-tooltip-align-annotations t)
 
   ;; expand-region
   (global-set-key (kbd "C-M-.") 'er/expand-region)
@@ -584,9 +605,6 @@ otherwise return regexp like \"\\\\_<sym\\\\_>\" for the symbol at point."
   ;; Easy to open platform configuration file
   (global-set-key (kbd "M-m f e p") 'spacemacs-private-find-startup-file)
 
-  ;; Load the platform configuration
-  (spacemacs-private-for-platform/user-config)
-
   ;; ===========================================================================
   ;;                custom file config
   ;; ===========================================================================
@@ -594,6 +612,11 @@ otherwise return regexp like \"\\\\_<sym\\\\_>\" for the symbol at point."
   (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
   (load custom-file 'no-error 'no-message)
   )
+
+;; Load special configuration
+(load (concat (file-name-directory load-file-name)
+              "for-env/for-env-load.el")
+      nil (not init-file-debug))
 
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.
