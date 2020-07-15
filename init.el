@@ -479,6 +479,9 @@ dump."
   ;; no minor-modes
   (spacemacs/toggle-mode-line-minor-modes-off)
 
+  ;; no C-z
+  (define-key evil-emacs-state-map (kbd "C-z") nil)
+
   ;; Display datetime in mode line
   ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Time-Parsing.html
   (spaceline-define-segment datetime

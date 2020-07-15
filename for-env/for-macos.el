@@ -56,12 +56,13 @@
             shell-default-position 'bottom)
 
      ;; lang layers
-     (c-c++ :variables
-            c-c++-default-mode-for-headers 'c-mode
-            c-c++-backend 'lsp-cquery)
+     ;; (c-c++ :variables
+     ;;        c-c++-default-mode-for-headers 'c-mode
+     ;;        c-c++-backend 'lsp-cquery)
      csv
      emacs-lisp
      graphviz
+     go
      html
      json
      latex
@@ -77,6 +78,7 @@
      ;; my layers
      my-packages
      my-utils
+     ; my-rime
      )
    )
   )
@@ -140,6 +142,9 @@
   ;; close swipe left/right
   (global-set-key [swipe-left] nil)
   (global-set-key [swipe-right] nil)
+
+  ;; ignore sys file
+  (setq counsel-find-file-ignore-regexp "\\.DS_Store\\'")
 
   ;; ===========================================================================
   ;; Lsp config
@@ -209,7 +214,7 @@
   ;; ===========================================================================
   ;;                rust config
   ;; ===========================================================================
-  (require 'rust-mode)
+  ; (require 'rust-mode)
 
   ;; ===========================================================================
   ;;                org config
@@ -231,8 +236,8 @@
           (ditaa      . t)))
 
   ;; plantuml.jar and ditaa.jar path setting
-  (setq org-plantuml-jar-path
-        (expand-file-name "~/.spacemacs.d/plantuml.jar"))
+  (setq plantuml-jar-path "~/.spacemacs.d/plantuml.jar")
+  (setq org-plantuml-jar-path plantuml-jar-path)
   (setq org-ditaa-jar-path "~/.spacemacs.d/ditaa.jar")
 
   ;; Set the hidden font style mark, the direct effect
@@ -247,6 +252,14 @@
   ;; simple template
   (require 'org-tempo)
 
+  ;; https://github.com/syl20bnr/spacemacs/commit/145126875731e8ee38770b2adf709805f23672f7
+  ;; https://github.com/integral-dw/org-superstar-mode#hide-leading-stars
+  ;; This is usually the default, but keep in mind it must be nil
+  (setq org-hide-leading-stars nil)
+  ;; This line is necessary.
+  (setq org-superstar-leading-bullet ?\s)
+  ;; https://github.com/integral-dw/org-superstar-mode#org-superstar-prettify-item-bullets
+  (setq org-superstar-prettify-item-bullets nil)
   ;; system time locale
   (setq system-time-locale "zh_CN.UTF-8")
 
@@ -279,8 +292,8 @@
       (org-defkey org-mode-map [(f8)] 'org-clock-out)))
 
   ;; Org-capture template settings
-  (setq org-task-file "~/repositories/rgb-24bit/record/task/task.org")
-  (setq org-idea-file "~/repositories/rgb-24bit/record/idea/jobi.org")
+  (setq org-task-file "~/record/task/jobt.org")
+  (setq org-idea-file "~/record/idea/jobi.org")
 
   (setq org-capture-templates
         '(("t" "Task" entry (file+headline org-task-file "Task")
