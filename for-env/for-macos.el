@@ -164,7 +164,25 @@
 
   ;; repository list config
   (setq magit-repository-directories
-        '(("~/repositories" . 2)))
+        '(("~/repositories" . 1)
+          ("~/bytedance"    . 1)
+          ("~/.spacemacs.d" . 0)
+          ("~/.emacs.d"     . 0)
+          ("~/record"       . 0)
+          ))
+
+  ;; https://emacs.stackexchange.com/questions/32696/how-to-use-magit-list-repositories
+  (setq magit-repolist-columns
+        '(("S"        1 magit-repolist-column-flag                   ())
+          ("L>U"      3 magit-repolist-column-unpushed-to-upstream   ((:right-align t)))
+          ("Name"    25 magit-repolist-column-ident                  ())
+          ("Branch"  20 magit-repolist-column-branch                 ())
+          ("Path"    99 magit-repolist-column-path                   ())))
+
+  (setq magit-repolist-column-flag-alist
+        '((magit-untracked-files . "N")
+          (magit-unstaged-files  . "M")
+          (magit-staged-files    . "M")))
 
   ;; ===========================================================================
   ;;                c-c++ config
