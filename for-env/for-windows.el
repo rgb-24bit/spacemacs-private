@@ -200,8 +200,8 @@
           (ditaa      . t)))
 
   ;; plantuml.jar and ditaa.jar path setting
-  (setq org-plantuml-jar-path
-        (expand-file-name "~/.spacemacs.d/plantuml.jar"))
+  (setq plantuml-jar-path "~/.spacemacs.d/plantuml.jar")
+  (setq org-plantuml-jar-path plantuml-jar-path)
   (setq org-ditaa-jar-path "~/.spacemacs.d/ditaa.jar")
 
   ;; Set the hidden font style mark, the direct effect
@@ -215,6 +215,15 @@
 
   ;; simple template
   (require 'org-tempo)
+
+  ;; https://github.com/syl20bnr/spacemacs/commit/145126875731e8ee38770b2adf709805f23672f7
+  ;; https://github.com/integral-dw/org-superstar-mode#hide-leading-stars
+  ;; This is usually the default, but keep in mind it must be nil
+  (setq org-hide-leading-stars nil)
+  ;; This line is necessary.
+  (setq org-superstar-leading-bullet ?\s)
+  ;; https://github.com/integral-dw/org-superstar-mode#org-superstar-prettify-item-bullets
+  (setq org-superstar-prettify-item-bullets nil)
 
   ;; Some config
   (with-eval-after-load 'org
