@@ -314,15 +314,17 @@
   (setq org-task-file "~/record/task/jobt.org")
   (setq org-idea-file "~/record/idea/jobi.org")
 
+  ;; https://www.zmonster.me/2018/02/28/org-mode-capture.html
   (setq org-capture-templates
         '(("t" "Task" entry (file+headline org-task-file "Task")
            "* TODO [#B] %^{HEADLINE} %^g\n  %?"
            :empty-lines 1)
-          ("d" "Done" entry (file+headline org-task-file "Done")
-           "* DONE %^{HEADLINE} %^g\n  %?"
+          ("i" "Idea")
+          ("io" "Idea.O" entry (file org-idea-file)
+           "* Idea.O %^{HEADLINE}\n  %?"
            :empty-lines 1)
-          ("i" "Idea" entry (file+headline org-idea-file "Idea")
-           "* %^{HEADLINE}\n  %?"
+          ("is" "Idea.S" entry (file org-idea-file)
+           "* Idea.S %^{HEADLINE}\n  %?"
            :empty-lines 1)))
 
   ;; org-refile setting
