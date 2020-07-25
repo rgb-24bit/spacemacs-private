@@ -142,6 +142,7 @@
   ;; close swipe left/right
   (global-set-key [swipe-left] nil)
   (global-set-key [swipe-right] nil)
+  ;; (global-set-key [switch-frame] nil)
 
   ;; ignore sys file
   (setq counsel-find-file-ignore-regexp "\\.DS_Store\\'")
