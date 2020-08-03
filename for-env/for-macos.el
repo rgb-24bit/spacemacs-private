@@ -66,6 +66,7 @@
      html
      json
      latex
+     major-modes
      markdown
      plantuml
      (python :variables
@@ -165,11 +166,12 @@
 
   ;; repository list config
   (setq magit-repository-directories
-        '(("~/repositories" . 1)
-          ("~/bytedance"    . 1)
-          ("~/.spacemacs.d" . 0)
-          ("~/.emacs.d"     . 0)
-          ("~/record"       . 0)
+        '(("~/repositories"                         . 1)
+          ("~/bytedance"                            . 1)
+          ("~/.spacemacs.d"                         . 0)
+          ("~/.emacs.d"                             . 0)
+          ("~/record"                               . 0)
+          ("~/go/src/git.byted.org/ee/people/saas"  . 1)
           ))
 
   ;; https://emacs.stackexchange.com/questions/32696/how-to-use-magit-list-repositories
