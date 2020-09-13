@@ -3,8 +3,8 @@
 (defconst my-packages-packages
   '((css-sort-buffer :location local)
     ;; (posframe :location local)
-    ;; (nox :location local)
-    ;; (jsonrpc)
+    (nox :location local)
+    (jsonrpc)
     (keyfreq :location local)
     ;; (bookmark+ :location local)
     )
@@ -16,15 +16,12 @@
 ;; (defun my-packages/init-posframe ()
 ;;   (use-package posframe))
 
-;; (defun my-packages/init-nox ()
-;;   (require 'nox)
-;;   (dolist (hook (list
-;;                  'js-mode-hook
-;;                  ))
-;;     (add-hook hook '(lambda () (nox-ensure)))))
+(defun my-packages/init-nox ()
+  (use-package nox
+    :defer t))
 
-;; (defun my-packages/init-jsonrpc ()
-;;   (use-package jsonrpc))
+(defun my-packages/init-jsonrpc ()
+  (use-package jsonrpc))
 
 (defun my-packages/init-keyfreq ()
   (use-package keyfreq

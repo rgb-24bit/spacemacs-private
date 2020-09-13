@@ -114,6 +114,8 @@
   :prefix "nox-"
   :group 'applications)
 
+(defvar nox-omni-sharp-path "~/.emacs.d/.cache/omnisharp/server/v1.34.5/OmniSharp.exe")
+
 (defvar nox-server-programs
   '((rust-mode . (nox-rls "rls"))
     (python-mode . nox--python-contact)
@@ -135,6 +137,7 @@
     (scala-mode . ("metals-emacs"))
     ((tex-mode context-mode texinfo-mode bibtex-mode) . ("digestif"))
     (dockerfile-mode . ("docker-langserver" "--stdio"))
+    (csharp-mode . (nox-omni-sharp-path "-lsp"))
     (css-mode "css-languageserver" "--stdio")
     (html-mode "html-languageserver" "--stdio")
     (json-mode "json-languageserver" "--stdio"))
@@ -143,19 +146,23 @@ An association list of (MAJOR-MODE . CONTACT) pairs.  MAJOR-MODE
 is a mode symbol, or a list of mode symbols.  The associated
 CONTACT specifies how to connect to a server for managing buffers
 of those modes.  CONTACT can be:
+
 * In the most common case, a list of strings (PROGRAM [ARGS...]).
   PROGRAM is called with ARGS and is expected to serve LSP requests
   over the standard input/output channels.
+
 * A list (HOST PORT [TCP-ARGS...]) where HOST is a string and PORT is
   na positive integer number for connecting to a server via TCP.
   Remaining ARGS are passed to `open-network-stream' for
   upgrading the connection with encryption or other capabilities.
+
 * A list (PROGRAM [ARGS...] :autoport [MOREARGS...]), whereby a
   combination of the two previous options is used..  First, an
   attempt is made to find an available server port, then PROGRAM
   is launched with ARGS; the `:autoport' keyword substituted for
   that number; and MOREARGS.  Nox then attempts to to establish
   a TCP connection to that port number on the localhost.
+
 * A cons (CLASS-NAME . INITARGS) where CLASS-NAME is a symbol
   designating a subclass of `nox-lsp-server', for representing
   experimental LSP servers.  INITARGS is a keyword-value plist
@@ -165,6 +172,7 @@ of those modes.  CONTACT can be:
   to CLASS-NAME.  The class `nox-lsp-server' descends
   `jsonrpc-process-connection', which you should see for the
   semantics of the mandatory :PROCESS argument.
+
 * A function of a single argument producing any of the above
   values for CONTACT.  The argument's value is non-nil if the
   connection was requested interactively (e.g. from the `nox'
@@ -251,6 +259,7 @@ under cursor."
 
 (defcustom nox-doc-tooltip-font nil
   "The font of documentation tooltip.
+
 Font format follow rule: fontname-fontsize."
   :type 'string)
 
@@ -278,6 +287,7 @@ Can set with `intelephense' or `php-language-server'."
 (defcustom nox-python-server "mspyls"
   "The default server for Python mode.
 Can set with `pyls' or `mspyls'.
+
 If you choose `mspyls', you need execute command `nox-print-mspyls-download-url' get download url of mspyls.
 Then extract the contents of the file to the directory ~/.emacs.d/nox/mspyls/ ."
   :type 'string)
@@ -348,12 +358,15 @@ Then extract the contents of the file to the directory ~/.emacs.d/nox/mspyls/ ."
       (WorkspaceEdit () (:changes :documentChanges))
       )
     "Alist (INTERFACE-NAME . INTERFACE) of known external LSP interfaces.
+
 INTERFACE-NAME is a symbol designated by the spec as
 \"interface\".  INTERFACE is a list (REQUIRED OPTIONAL) where
 REQUIRED and OPTIONAL are lists of keyword symbols designating
 field names that must be, or may be, respectively, present in a
 message adhering to that interface.
+
 Here's what an element of this alist might look like:
+
     (CreateFile . ((:kind :uri) (:options)))"))
 
 (eval-and-compile
@@ -361,19 +374,24 @@ Here's what an element of this alist might look like:
                             '(disallow-non-standard-keys
                               ))
     "How strictly to check LSP interfaces at compile- and run-time.
+
 Value is a list of symbols (if the list is empty, no checks are
 performed).
+
 If the symbol `disallow-non-standard-keys' is present, an error
 is raised if any extraneous fields are sent by the server.  At
 compile-time, a warning is raised if a destructuring spec
 includes such a field.
+
 If the symbol `enforce-required-keys' is present, an error is
 raised if any required fields are missing from the message sent
 from the server.  At compile-time, a warning is raised if a
 destructuring spec doesn't use such a field.
+
 If the symbol `enforce-optional-keys' is present, nothing special
 happens at run-time.  At compile-time, a warning is raised if a
 destructuring spec doesn't use all optional fields.
+
 If the symbol `disallow-unknown-methods' is present, Nox warns
 on unknown notifications and errors on unknown requests.
 "))
@@ -649,8 +667,10 @@ treated as in `nox-dbind'."
   "Politely ask SERVER to quit.
 Interactively, read SERVER from the minibuffer unless there is
 only one and it's managing the current buffer.
+
 Forcefully quit it if it doesn't respond within TIMEOUT seconds.
 Don't leave this function with the server still running.
+
 If PRESERVE-BUFFERS is non-nil (interactively, when called with a
 prefix argument), do not kill events and output buffers of
 SERVER.  ."
@@ -661,9 +681,8 @@ SERVER.  ."
   (unwind-protect
       (progn
         (setf (nox--shutdown-requested server) t)
-        (jsonrpc-request server :shutdown nox--{}
-                         :timeout (or timeout 1.5))
-        (jsonrpc-notify server :exit nox--{}))
+        (jsonrpc-request server :shutdown nil :timeout (or timeout 1.5))
+        (jsonrpc-notify server :exit nil))
     ;; Now ask jsonrpc.el to shut down the server.
     (jsonrpc-shutdown server (not preserve-buffers))
     (unless preserve-buffers (kill-buffer (jsonrpc-events-buffer server)))))
@@ -775,6 +794,7 @@ be guessed."
 ;;;###autoload
 (defun nox (managed-major-mode project class contact &optional interactive)
   "Manage a project with a Language Server Protocol (LSP) server.
+
 The LSP server of CLASS started (or contacted) via CONTACT.  If
 this operation is successful, current *and future* file buffers
 of MANAGED-MAJOR-MODE inside PROJECT automatically become
@@ -782,6 +802,7 @@ of MANAGED-MAJOR-MODE inside PROJECT automatically become
 contents is exchanged periodically to provide enhanced
 code-analysis via `xref-find-definitions',
 `completion-at-point', among others.
+
 Interactively, the command attempts to guess MANAGED-MAJOR-MODE
 from current buffer, CLASS and CONTACT from
 `nox-server-programs' and PROJECT from `project-current'.  If
@@ -789,11 +810,15 @@ it can't guess, the user is prompted.  With a single
 \\[universal-argument] prefix arg, it always prompt for COMMAND.
 With two \\[universal-argument] prefix args, also prompts for
 MANAGED-MAJOR-MODE.
+
 PROJECT is a project instance as returned by `project-current'.
+
 CLASS is a subclass of symbol `nox-lsp-server'.
+
 CONTACT specifies how to contact the server.  It is a
 keyword-value plist used to initialize CLASS or a plain list as
 described in `nox-server-programs', which see.
+
 INTERACTIVE is t if called interactively."
   (interactive (append (nox--guess-contact t) '(t)))
   (let* ((current-server (nox-current-server))
@@ -1054,6 +1079,7 @@ CONNECT-ARGS are passed as additional arguments to
 
 (defvar nox-current-column-function #'nox-current-column
   "Function to calculate the current column.
+
 This is the inverse operation of
 `nox-move-to-column-function' (which see).  It is a function of
 no arguments returning a column number.  For buffers managed by
@@ -1077,11 +1103,13 @@ for all others.")
 
 (defvar nox-move-to-column-function #'nox-move-to-column
   "Function to move to a column reported by the LSP server.
+
 According to the standard, LSP column/character offsets are based
 on a count of UTF-16 code units, not actual visual columns.  So
 when LSP says position 3 of a line containing just \"aXbc\",
 where X is a multi-byte character, it actually means `b', not
 `c'. However, many servers don't follow the spec this closely.
+
 For buffers managed by fully LSP-compliant servers, this should
 be set to `nox-move-to-lsp-abiding-column', and
 `nox-move-to-column' (the default) for all others.")
@@ -1301,6 +1329,7 @@ Use `nox-managed-p' to determine if current buffer is managed.")
 
 (defun nox--maybe-activate-editing-mode ()
   "Maybe activate `nox--managed-mode'.
+
 If it is activated, also signal textDocument/didOpen."
   (unless nox--managed-mode
     ;; Called when `revert-buffer-in-progress-p' is t but
@@ -2457,6 +2486,7 @@ If INTERACTIVE, prompt user for details."
 ;;;
 (defcustom nox-optimization-p t
   "Improve performance by adjust GC limit and disable `bidi-display-reordering'.
+
 If you don't need Nox set this, change this option to nil."
   :type 'boolean)
 

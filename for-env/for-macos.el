@@ -30,7 +30,7 @@
 
      ;; emacs layers
      better-defaults
-     (ibuffer :variables ibuffer-group-buffers-by 'nil)
+     (ibuffer :variables ibuffer-group-buffers-by 'projects)
      (org :variables org-enable-github-support t)
 
      ;; tools layers
@@ -62,7 +62,7 @@
      csv
      emacs-lisp
      graphviz
-     go
+     (go :variables go-tab-width 4)
      html
      json
      latex
@@ -166,12 +166,12 @@
 
   ;; repository list config
   (setq magit-repository-directories
-        '(("~/repositories"                         . 1)
-          ("~/bytedance"                            . 1)
-          ("~/.spacemacs.d"                         . 0)
-          ("~/.emacs.d"                             . 0)
-          ("~/record"                               . 0)
-          ("~/go/src/git.byted.org/ee/people/saas"  . 1)
+        '(("~/repositories"                    . 1)
+          ("~/bytedance"                       . 1)
+          ("~/.spacemacs.d"                    . 0)
+          ("~/.emacs.d"                        . 0)
+          ("~/record"                          . 0)
+          ("~/go/src/git.byted.org/ee/people"  . 2)
           ))
 
   ;; https://emacs.stackexchange.com/questions/32696/how-to-use-magit-list-repositories
@@ -392,6 +392,12 @@
     (interactive)
     (org-mark-element)
     (kill-region (region-beginning) (region-end)))
+
+  ;; ===========================================================================
+  ;;   major-modes
+  ;; ===========================================================================
+
+  (setq thrift-indent-level 4)
 
   ;; ===========================================================================
   ;;                html, css, js, json config
