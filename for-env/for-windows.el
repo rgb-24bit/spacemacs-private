@@ -83,7 +83,23 @@
 ;;                  advice for dotspacemacs/init
 ;; =============================================================================
 
-;; ...
+(defun advice--dotspacemacs/init ()
+  "Advice for function `dotspacemacs/init'."
+  (setq-default
+   ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
+   ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
+   ;; first three are spaceline themes. `doom' is the doom-emacs mode-line.
+   ;; `vanilla' is default Emacs mode-line. `custom' is a user defined themes,
+   ;; refer to the DOCUMENTATION.org for more info on how to create your own
+   ;; spaceline theme. Value can be a symbol or list with additional properties.
+   ;; (default '(spacemacs :separator wave :separator-scale 1.5))
+   ;; https://github.com/syl20bnr/spacemacs/issues/13843
+   dotspacemacs-mode-line-theme '(spacemacs :separator arrow :separator-scale 0.5)
+   )
+  )
+
+(unless (advice-member-p 'dotspacemacs/init #'advice--dotspacemacs/init)
+  (advice-add 'dotspacemacs/init :after #'advice--dotspacemacs/init))
 
 ;; =============================================================================
 ;;                  advice for dotspacemacs/user-init
