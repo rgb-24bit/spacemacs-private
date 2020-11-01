@@ -44,9 +44,9 @@
                       syntax-checking-enable-by-default nil)
 
      ;; lang layers
-     (go :variables go-tab-width 4
-         :packages go-mode)
-     ;; (go :variables go-tab-width 4)
+     ;; (go :variables go-tab-width 4
+     ;;     :packages go-mode)
+     (go :variables go-tab-width 4)
      graphviz
      yaml
      emacs-lisp

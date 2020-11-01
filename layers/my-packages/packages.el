@@ -5,6 +5,7 @@
     ;; (posframe :location local)
     (nox :location local)
     (jsonrpc)
+    manage-minor-mode
     (keyfreq :location local)
     ;; (bookmark+ :location local)
     )
@@ -38,5 +39,8 @@
 
 ;; (defun my-packages/init-bookmark+ ()
 ;;   (use-package bookmark+))
+
+(defun my-packages/init-manage-minor-mode ()
+  (use-package manage-minor-mode))
 
 ;;; packages.el ends here
