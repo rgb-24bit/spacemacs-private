@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: ginkgo
+# key: ginkgo
+# --
+import 	. "github.com/onsi/ginkgo"
+
+var _ = Describe("$1", func() {
+t := GinkgoT()
+
+$0
+})
+
