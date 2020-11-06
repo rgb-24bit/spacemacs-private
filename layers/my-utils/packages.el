@@ -6,6 +6,9 @@
     (bison :location local)
     (restclient :location local)
     (auto-save :location local)
+    manage-minor-mode
+    (keyfreq :location local)
+    (css-sort-buffer :location local)
     ))
 
 (defun my-utils/init-insert-translated-name ()
@@ -36,5 +39,26 @@
     (progn
       (auto-save-enable)
       (setq auto-save-silent t))))
+
+(defun my-utils/init-css-sort-buffer ()
+  (use-package css-sort-buffer
+    :defer t))
+
+(defun my-utils/init-keyfreq ()
+  (use-package keyfreq
+    :config
+    (progn
+      (keyfreq-mode 1)
+      (keyfreq-autosave-mode 1)
+      (setq keyfreq-excluded-commands
+            '(self-insert-command
+              forward-char
+              backward-char
+              previous-line
+              next-line)))))
+
+(defun my-utils/init-manage-minor-mode ()
+  (use-package manage-minor-mode
+    :defer t))
 
 ;;; packages.el ends here
