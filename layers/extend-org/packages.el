@@ -42,20 +42,6 @@
   ;; https://github.com/integral-dw/org-superstar-mode#org-superstar-prettify-item-bullets
   (setq org-superstar-prettify-item-bullets nil)
 
-  ;; https://www.zmonster.me/2018/02/28/org-mode-capture.html
-  (when (and org-task-file org-idea-file)
-    (setq org-capture-templates
-          '(("t" "Task" entry (file+headline org-task-file "Task")
-             "* TODO [#B] %^{HEADLINE} %^g\n  %?"
-             :empty-lines 1)
-            ("i" "Idea")
-            ("io" "Idea.O" entry (file org-idea-file)
-             "* Idea.O %^{HEADLINE}\n  %?"
-             :empty-lines 1)
-            ("is" "Idea.S" entry (file org-idea-file)
-             "* Idea.S %^{HEADLINE}\n  %?"
-             :empty-lines 1))))
-
   (with-eval-after-load 'org
     (progn
       ;; ===========================================================================
@@ -82,10 +68,7 @@
       ;; simple template
       (require 'org-tempo)
 
-      ;; ;; Convenient timing
-      ;; (org-defkey org-mode-map [(f5)] 'org-clock-in)
-      ;; (org-defkey org-mode-map [(f8)] 'org-clock-out)
-      ))
+      (org-defkey org-mode-map [(control k)] 'rgb-24bit/org-delete-element)))
   )
 
 ;;; packages.el ends here

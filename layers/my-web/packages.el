@@ -113,7 +113,9 @@
 
 (defun my-web/init-css-mode ()
   (use-package css-mode
-    :defer t))
+    :defer t
+    :config
+    (progn (setq css-indent-offset 2))))
 
 (defun my-web/init-css-sort-buffer ()
   (use-package css-sort-buffer))
@@ -126,6 +128,7 @@
     (progn
       ;; prefixes
       (spacemacs/declare-prefix-for-mode 'js2-mode "mz" "folding")
+
       ;; key bindings
       (spacemacs/set-leader-keys-for-major-mode 'js2-mode
         "w" 'js2-mode-toggle-warnings-and-errors
@@ -134,6 +137,10 @@
         "zr" 'js2-mode-show-all
         "ze" 'js2-mode-toggle-element
         "zF" 'js2-mode-toggle-hide-functions
-        "zC" 'js2-mode-toggle-hide-comments))))
+        "zC" 'js2-mode-toggle-hide-comments)
+
+      ;; indent
+      (setq-default js2-basic-offset 2)
+      (setq-default js-indent-level 2))))
 
 ;;; packages.el ends here

@@ -45,8 +45,16 @@
 ;;               (clocktable-by-tag/insert-tag params))
 ;;             tags)))
 
-(defun org-delete-element ()
+;; (defun rgb-24bit/insert-clock-entry ()
+;;   "Insert a clock entity."
+;;   (interactive)
+;;   (org-clock-in)
+;;   (org-clock-out))
+
+(defun rgb-24bit/org-delete-element ()
   "Delete org element."
   (interactive)
   (org-mark-element)
   (kill-region (region-beginning) (region-end)))
+
+;;; funcs.el ends here
