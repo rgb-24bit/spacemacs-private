@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: config
+# key: config
+# --
+;;; config.el --- $1 configuration File for Spacemacs
+
+$0

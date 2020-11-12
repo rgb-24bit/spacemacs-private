@@ -2,16 +2,8 @@
 # name: layers
 # key: layers
 # --
-;;; $1.el --- $2 layer packages file for Spacemacs.
-;;
-;; Copyright (c) 2012-2018 rgb-24bit
-;;
-;; Author:  rgb-24bit <rgb-24bit@foxmail.com>
-;; URL: https://github.com/rgb-24bit/spacemacs-private
-;;
-;; This file is not part of GNU Emacs.
-;;
-;;; License: GPLv3
+;;; layers.el --- my-$1 layer layers file for Spacemacs.
 
-;;; Code:
-$0
+(configuration-layer/declare-layer-dependencies '($0))
+
+;;; layers.el ends here

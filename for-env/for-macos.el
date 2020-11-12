@@ -10,27 +10,19 @@
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     ;; spacemacs layers
-     spacemacs-completion
-     spacemacs-editing
-     spacemacs-editing-visual
-     spacemacs-modeline
-     spacemacs-navigation
-     spacemacs-org
-     spacemacs-project
-     spacemacs-visual
-
      ;; completion layers
      auto-completion
      helm
      ivy
 
      ;; source control layers
+     (version-control :variables
+                      version-control-diff-tool 'nil)
      git
 
      ;; emacs layers
      better-defaults
-     (ibuffer :variables ibuffer-group-buffers-by 'projects)
+     (ibuffer :variables ibuffer-group-buffers-by 'nil)
      (org :variables org-enable-github-support t)
 
      ;; tools layers
@@ -317,7 +309,7 @@
   (setq org-idea-file "~/record/idea/jobi.org")
 
   ;; https://www.zmonster.me/2018/02/28/org-mode-capture.html
-  (setq org-capture-templates
+   (setq org-capture-templates
         '(("t" "Task" entry (file+headline org-task-file "Task")
            "* TODO [#B] %^{HEADLINE} %^g\n  %?"
            :empty-lines 1)

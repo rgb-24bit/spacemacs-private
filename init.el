@@ -9,7 +9,7 @@ This function should only modify configuration layer settings."
    ;; Base distribution to use. This is a layer contained in the directory
    ;; `+distribution'. For now available distributions are `spacemacs-base'
    ;; or `spacemacs'. (default 'spacemacs)
-   dotspacemacs-distribution 'spacemacs-base
+   dotspacemacs-distribution 'spacemacs-private
 
    ;; Lazy installation of layers (i.e. layers are installed only when a file
    ;; with a supported type is opened). Possible values are `all', `unused'
@@ -31,28 +31,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-configuration-layer-path '("~/.spacemacs.d/layers/")
 
    ;; List of configuration layers to load.
-   dotspacemacs-configuration-layers
-   '(
-     ;; spacemacs layers
-     spacemacs-completion
-     spacemacs-editing
-     spacemacs-editing-visual
-     spacemacs-modeline
-     spacemacs-navigation
-     spacemacs-org
-     spacemacs-project
-     spacemacs-visual
-
-     ;; completion layers
-     auto-completion
-     helm
-     ivy
-
-     ;; emacs layers
-     better-defaults
-     (ibuffer :variables ibuffer-group-buffers-by 'nil)
-     (org :variables org-enable-github-support t)
-     )
+   dotspacemacs-configuration-layers '()
 
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -67,11 +46,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages
-   '(
-     ;; auto-completion
-     yasnippet-snippets
-     )
+   dotspacemacs-excluded-packages '()
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -642,11 +617,11 @@ otherwise return regexp like \"\\\\_<sym\\\\_>\" for the symbol at point."
           ("payee" "ledger -f %(ledger-file) reg @%(payee) --date-format %Y/%m/%d")
           ("account" "ledger -f %(ledger-file) reg %(account) --date-format %Y/%m/%d")))
 
-  ;; ===========================================================================
-  ;; Platform configuration
-  ;; ===========================================================================
+  ;; =============================================================================
+  ;;                config for special configuration file
+  ;; =============================================================================
 
-  ;; Easy to open platform configuration file
+  ;; Easy to open special configuration file
   (global-set-key (kbd "M-m f e p") 'spacemacs-private-find-startup-file)
 
   ;; ===========================================================================
@@ -657,28 +632,13 @@ otherwise return regexp like \"\\\\_<sym\\\\_>\" for the symbol at point."
   (load custom-file 'no-error 'no-message)
   )
 
-;; Load special configuration
+;; =============================================================================
+;;                    Load the config for special env
+;; =============================================================================
+
 (load (concat (file-name-directory load-file-name)
               "for-env/for-env-load.el")
       nil (not init-file-debug))
 
-(defun dotspacemacs/emacs-custom-settings ()
-  "Emacs custom settings.
-This is an auto-generated function, do not modify its content directly, use
-Emacs customize menu instead.
-This function is called at the very end of Spacemacs initialization."
-  (custom-set-variables
-   ;; custom-set-variables was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   '(package-selected-packages
-     (quote
-      (winum wgrep web-mode toc-org sql-indent spaceline-all-the-icons spaceline powerline smartparens plantuml-mode pipenv pyvenv paradox org-projectile projectile org-pomodoro alert org-mime org-download org-brain nameless mwim lsp-ui live-py-mode link-hint js2-mode ivy-hydra hl-todo highlight-indentation helm-make groovy-mode graphviz-dot-mode expand-region eval-sexp-fu editorconfig doom-modeline all-the-icons cython-mode counsel swiper company-lsp lsp-mode ht color-theme-sanityinc-solarized cnfonts centered-cursor-mode auto-yasnippet auto-compile aggressive-indent ace-window ace-link avy anaconda-mode pythonic auctex company yasnippet ivy markdown-mode f dash which-key use-package hydra lv async evil goto-chg yapfify yaml-mode ws-butler web-beautify volatile-highlights uuidgen unfill undo-tree symon string-inflection sqlup-mode spinner smex shrink-path restart-emacs rainbow-delimiters pytest py-isort popwin pippel pip-requirements pcre2el password-generator packed overseer origami org-present org-category-capture org-bullets open-junk-file move-text mmm-mode memoize markdown-toc macrostep lorem-ipsum log4e js-doc ivy-yasnippet ivy-xref indent-guide importmagic hungry-delete htmlize highlight-parentheses highlight-numbers highlight helm groovy-imports google-c-style golden-ratio gnuplot gntp gh-md fuzzy font-lock+ flycheck flx-ido fill-column-indicator fancy-battery evil-org emmet-mode elisp-slime-nav eldoc-eval edit-indirect dotenv-mode disaster diminish csharp-mode company-web company-tern company-statistics company-c-headers company-auctex company-anaconda command-log-mode column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol ac-ispell))))
-  (custom-set-faces
-   ;; custom-set-faces was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   )
-  )
+;; Do not write anything past this comment. This is where Emacs will
+;; auto-generate custom variable definitions.
