@@ -1,4 +1,4 @@
-;;; layers.el --- my-org layer layers file for Spacemacs.
+;;; layers.el --- extend-org layer layers file.
 
 (configuration-layer/declare-layer-dependencies '((org :variables org-enable-github-support t)))
 

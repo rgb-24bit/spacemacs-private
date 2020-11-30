@@ -1,4 +1,4 @@
-;;; funcs.el --- my-org layer funcs file for Spacemacs.
+;;; funcs.el --- extend-org layer funcs file.
 
 ;; (defun clocktable-by-tag/shift-cell (n)
 ;;   (let ((str ""))

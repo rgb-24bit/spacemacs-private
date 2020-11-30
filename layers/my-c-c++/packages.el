@@ -12,7 +12,7 @@
 
 (defun my-c-c++/post-init-company ()
   (spacemacs|add-company-backends
-    :backends company-tabnine company-capf company-c-headers
+    :backends company-capf company-c-headers
     :modes c-mode-common))
 
 (defun my-c-c++/init-company-c-headers ()

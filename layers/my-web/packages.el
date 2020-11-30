@@ -18,14 +18,10 @@
     :backends company-css
     :modes css-mode))
 
-(defun my-web/init-web-beautify ()
-  (use-package web-beautify
-    :defer t
-    :init
-    (progn
-      (spacemacs/set-leader-keys-for-major-mode 'web-mode "=" 'web-beautify-html)
-      (spacemacs/set-leader-keys-for-major-mode 'css-mode "=" 'web-beautify-css)
-      (spacemacs/set-leader-keys-for-major-mode 'js2-mode "=" 'web-beautify-js))))
+(defun my-web/post-init-web-beautify ()
+  (spacemacs/set-leader-keys-for-major-mode 'web-mode "=" 'web-beautify-html)
+  (spacemacs/set-leader-keys-for-major-mode 'css-mode "=" 'web-beautify-css)
+  (spacemacs/set-leader-keys-for-major-mode 'js2-mode "=" 'web-beautify-js))
 
 (defun my-web/init-emmet-mode ()
   (use-package emmet-mode
@@ -137,10 +133,6 @@
         "zr" 'js2-mode-show-all
         "ze" 'js2-mode-toggle-element
         "zF" 'js2-mode-toggle-hide-functions
-        "zC" 'js2-mode-toggle-hide-comments)
-
-      ;; indent
-      (setq-default js2-basic-offset 2)
-      (setq-default js-indent-level 2))))
+        "zC" 'js2-mode-toggle-hide-comments))))
 
 ;;; packages.el ends here

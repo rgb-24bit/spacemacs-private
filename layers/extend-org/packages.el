@@ -68,7 +68,8 @@
       ;; simple template
       (require 'org-tempo)
 
-      (org-defkey org-mode-map [(control k)] 'rgb-24bit/org-delete-element)))
+      ;; quick delete element
+      (org-defkey org-mode-map [(control c k)] 'rgb-24bit/org-delete-element)))
   )
 
 ;;; packages.el ends here

@@ -1,5 +1,0 @@
-#+AUTHOR:     rgb-24bit
-
-* spacemacs-private
-  My spacemacs configuration.
-
