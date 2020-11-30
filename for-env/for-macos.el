@@ -262,6 +262,8 @@
   ;; The setting code is highlighted
   (setq org-src-fontify-natively t)
 
+  (setq org-fontify-done-headline nil)
+
   ;; simple template
   (require 'org-tempo)
 

@@ -2,4 +2,10 @@
 # name: head
 # key: head
 # --
-;;; `(buffer-name)` --- $0
+;;; `(buffer-name)` --- $1 -*- lexical-binding: t; -*-
+
+;;; Code:
+
+$0
+
+;;; `(buffer-name)` ends here
