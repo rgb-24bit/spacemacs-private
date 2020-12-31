@@ -9,6 +9,7 @@
     manage-minor-mode
     (keyfreq :location local)
     (css-sort-buffer :location local)
+    rfc-mode
     ))
 
 (defun my-utils/init-insert-translated-name ()
@@ -60,5 +61,9 @@
 (defun my-utils/init-manage-minor-mode ()
   (use-package manage-minor-mode
     :defer t))
+
+(defun my-utils/init-rfc-mode ()
+  (use-package rfc-mode
+    :commands (rfc-mode-browse rfc-mode-read)))
 
 ;;; packages.el ends here
