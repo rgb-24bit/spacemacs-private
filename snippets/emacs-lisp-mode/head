@@ -2,10 +2,11 @@
 # name: head
 # key: head
 # --
-;;; `(buffer-name)` --- $1 -*- lexical-binding: t; -*-
+;;; `(file-name-nondirectory (buffer-file-name))` --- $1 -*- lexical-binding: t; -*-
 
 ;;; Code:
 
 $0
 
-;;; `(buffer-name)` ends here
+(provide '`(file-name-base (buffer-file-name))`)
+;;; `(file-name-nondirectory (buffer-file-name))` ends here

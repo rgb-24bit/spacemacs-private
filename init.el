@@ -514,6 +514,7 @@ dump."
 
   ;; editing
   (global-set-key (kbd "M-DEL") 'just-one-space)
+  (global-set-key (kbd "C-:") 'avy-goto-char-in-line)
 
   ;; Automatically split the window to the right
   ;; Refrence:
@@ -577,6 +578,7 @@ otherwise return regexp like \"\\\\_<sym\\\\_>\" for the symbol at point."
     (progn
       (define-key view-mode-map (kbd "n") 'scroll-up-line)
       (define-key view-mode-map (kbd "p") 'scroll-down-line)))
+  (add-hook 'find-function-after-hook 'view-mode)
 
   ;; https://www.emacswiki.org/emacs/ChangingEncodings
   (modify-coding-system-alist 'file "\\.sh\\'" 'unix)
